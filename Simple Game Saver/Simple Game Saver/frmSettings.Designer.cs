@@ -1,6 +1,6 @@
 ﻿namespace SimpleGameSaver
 {
-    partial class frmMain
+    partial class frmSettings
     {
         /// <summary>
         /// Required designer variable.

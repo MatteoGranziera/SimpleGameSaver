@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SimpleGameSaver
 {
-    public partial class frmMain : Form
+    public partial class frmSettings : Form
     {
-        public frmMain()
+        public frmSettings()
         {
             InitializeComponent();
         }

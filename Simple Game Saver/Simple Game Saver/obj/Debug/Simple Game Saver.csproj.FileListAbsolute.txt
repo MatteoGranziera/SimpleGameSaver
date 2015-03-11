@@ -7,3 +7,6 @@ C:\Users\Matteo\Documents\Visual Studio 2013\Projects\SimpleGameSaver\Simple Gam
 C:\Users\Matteo\Documents\Visual Studio 2013\Projects\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.csproj.GenerateResource.Cache
 C:\Users\Matteo\Documents\Visual Studio 2013\Projects\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.exe
 C:\Users\Matteo\Documents\Visual Studio 2013\Projects\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.pdb
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\bin\Debug\Simple Game Saver.exe.config
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.exe
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.pdb
