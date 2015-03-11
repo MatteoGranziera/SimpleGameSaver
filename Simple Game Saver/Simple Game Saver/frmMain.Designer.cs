@@ -40,16 +40,16 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grbSaveOptions = new System.Windows.Forms.GroupBox();
-            this.ckbSaveToFolder = new System.Windows.Forms.CheckBox();
+            this.cmbUsersSave = new System.Windows.Forms.ComboBox();
+            this.lblUserSave = new System.Windows.Forms.Label();
             this.ckbSaveToCloud = new System.Windows.Forms.CheckBox();
+            this.ckbSaveToFolder = new System.Windows.Forms.CheckBox();
             this.grbRestoreOptions = new System.Windows.Forms.GroupBox();
+            this.cmbUserRestore = new System.Windows.Forms.ComboBox();
+            this.lblUserRestore = new System.Windows.Forms.Label();
             this.ckbRestoreFromCloud = new System.Windows.Forms.CheckBox();
             this.ckeRestoreFromFolder = new System.Windows.Forms.CheckBox();
             this.btnRestoreSaves = new System.Windows.Forms.Button();
-            this.lblUserSave = new System.Windows.Forms.Label();
-            this.lblUserRestore = new System.Windows.Forms.Label();
-            this.cmbUsersSave = new System.Windows.Forms.ComboBox();
-            this.cmbUserRestore = new System.Windows.Forms.ComboBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSetUp = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
@@ -104,6 +104,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -118,6 +119,7 @@
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -130,7 +132,7 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // grbSaveOptions
@@ -147,15 +149,23 @@
             this.grbSaveOptions.TabStop = false;
             this.grbSaveOptions.Text = "Backup Options";
             // 
-            // ckbSaveToFolder
+            // cmbUsersSave
             // 
-            this.ckbSaveToFolder.AutoSize = true;
-            this.ckbSaveToFolder.Location = new System.Drawing.Point(6, 19);
-            this.ckbSaveToFolder.Name = "ckbSaveToFolder";
-            this.ckbSaveToFolder.Size = new System.Drawing.Size(202, 17);
-            this.ckbSaveToFolder.TabIndex = 0;
-            this.ckbSaveToFolder.Text = "Copy to SimpleGameSaver\'s directory";
-            this.ckbSaveToFolder.UseVisualStyleBackColor = true;
+            this.cmbUsersSave.FormattingEnabled = true;
+            this.cmbUsersSave.Location = new System.Drawing.Point(44, 65);
+            this.cmbUsersSave.Name = "cmbUsersSave";
+            this.cmbUsersSave.Size = new System.Drawing.Size(166, 21);
+            this.cmbUsersSave.TabIndex = 3;
+            this.cmbUsersSave.TextChanged += new System.EventHandler(this.cmbUsersSave_TextChanged);
+            // 
+            // lblUserSave
+            // 
+            this.lblUserSave.AutoSize = true;
+            this.lblUserSave.Location = new System.Drawing.Point(6, 68);
+            this.lblUserSave.Name = "lblUserSave";
+            this.lblUserSave.Size = new System.Drawing.Size(32, 13);
+            this.lblUserSave.TabIndex = 2;
+            this.lblUserSave.Text = "User:";
             // 
             // ckbSaveToCloud
             // 
@@ -166,6 +176,16 @@
             this.ckbSaveToCloud.TabIndex = 1;
             this.ckbSaveToCloud.Text = "Copy to cloud directory";
             this.ckbSaveToCloud.UseVisualStyleBackColor = true;
+            // 
+            // ckbSaveToFolder
+            // 
+            this.ckbSaveToFolder.AutoSize = true;
+            this.ckbSaveToFolder.Location = new System.Drawing.Point(6, 19);
+            this.ckbSaveToFolder.Name = "ckbSaveToFolder";
+            this.ckbSaveToFolder.Size = new System.Drawing.Size(202, 17);
+            this.ckbSaveToFolder.TabIndex = 0;
+            this.ckbSaveToFolder.Text = "Copy to SimpleGameSaver\'s directory";
+            this.ckbSaveToFolder.UseVisualStyleBackColor = true;
             // 
             // grbRestoreOptions
             // 
@@ -180,6 +200,24 @@
             this.grbRestoreOptions.TabIndex = 5;
             this.grbRestoreOptions.TabStop = false;
             this.grbRestoreOptions.Text = "Restore Options";
+            // 
+            // cmbUserRestore
+            // 
+            this.cmbUserRestore.FormattingEnabled = true;
+            this.cmbUserRestore.Location = new System.Drawing.Point(44, 65);
+            this.cmbUserRestore.Name = "cmbUserRestore";
+            this.cmbUserRestore.Size = new System.Drawing.Size(166, 21);
+            this.cmbUserRestore.TabIndex = 4;
+            this.cmbUserRestore.TextChanged += new System.EventHandler(this.cmbUserRestore_TextChanged);
+            // 
+            // lblUserRestore
+            // 
+            this.lblUserRestore.AutoSize = true;
+            this.lblUserRestore.Location = new System.Drawing.Point(6, 68);
+            this.lblUserRestore.Name = "lblUserRestore";
+            this.lblUserRestore.Size = new System.Drawing.Size(32, 13);
+            this.lblUserRestore.TabIndex = 3;
+            this.lblUserRestore.Text = "User:";
             // 
             // ckbRestoreFromCloud
             // 
@@ -213,42 +251,6 @@
             this.btnRestoreSaves.Text = "Restore Savegames";
             this.btnRestoreSaves.UseVisualStyleBackColor = true;
             // 
-            // lblUserSave
-            // 
-            this.lblUserSave.AutoSize = true;
-            this.lblUserSave.Location = new System.Drawing.Point(6, 68);
-            this.lblUserSave.Name = "lblUserSave";
-            this.lblUserSave.Size = new System.Drawing.Size(32, 13);
-            this.lblUserSave.TabIndex = 2;
-            this.lblUserSave.Text = "User:";
-            // 
-            // lblUserRestore
-            // 
-            this.lblUserRestore.AutoSize = true;
-            this.lblUserRestore.Location = new System.Drawing.Point(6, 68);
-            this.lblUserRestore.Name = "lblUserRestore";
-            this.lblUserRestore.Size = new System.Drawing.Size(32, 13);
-            this.lblUserRestore.TabIndex = 3;
-            this.lblUserRestore.Text = "User:";
-            // 
-            // cmbUsersSave
-            // 
-            this.cmbUsersSave.FormattingEnabled = true;
-            this.cmbUsersSave.Location = new System.Drawing.Point(44, 65);
-            this.cmbUsersSave.Name = "cmbUsersSave";
-            this.cmbUsersSave.Size = new System.Drawing.Size(166, 21);
-            this.cmbUsersSave.TabIndex = 3;
-            this.cmbUsersSave.TextChanged += new System.EventHandler(this.cmbUsersSave_TextChanged);
-            // 
-            // cmbUserRestore
-            // 
-            this.cmbUserRestore.FormattingEnabled = true;
-            this.cmbUserRestore.Location = new System.Drawing.Point(44, 65);
-            this.cmbUserRestore.Name = "cmbUserRestore";
-            this.cmbUserRestore.Size = new System.Drawing.Size(166, 21);
-            this.cmbUserRestore.TabIndex = 4;
-            this.cmbUserRestore.TextChanged += new System.EventHandler(this.cmbUserRestore_TextChanged);
-            // 
             // btnExit
             // 
             this.btnExit.Location = new System.Drawing.Point(12, 224);
@@ -257,6 +259,7 @@
             this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnSetUp
             // 
@@ -266,6 +269,7 @@
             this.btnSetUp.TabIndex = 7;
             this.btnSetUp.Text = "Setup Configuration";
             this.btnSetUp.UseVisualStyleBackColor = true;
+            this.btnSetUp.Click += new System.EventHandler(this.btnSetUp_Click);
             // 
             // frmMain
             // 

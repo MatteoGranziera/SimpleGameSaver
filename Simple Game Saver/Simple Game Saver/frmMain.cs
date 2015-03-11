@@ -42,5 +42,27 @@ namespace SimpleGameSaver
                 btnRestoreSaves.Enabled = false;
             }
         }
+
+        private void btnSetUp_Click(object sender, EventArgs e)
+        {
+            frmSettings settings = new frmSettings();
+            settings.ShowDialog();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSettings settings = new frmSettings();
+            settings.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
