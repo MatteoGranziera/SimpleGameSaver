@@ -238,6 +238,7 @@
             this.cmbUsersSave.Name = "cmbUsersSave";
             this.cmbUsersSave.Size = new System.Drawing.Size(166, 21);
             this.cmbUsersSave.TabIndex = 3;
+            this.cmbUsersSave.TextChanged += new System.EventHandler(this.cmbUsersSave_TextChanged);
             // 
             // cmbUserRestore
             // 
@@ -246,6 +247,7 @@
             this.cmbUserRestore.Name = "cmbUserRestore";
             this.cmbUserRestore.Size = new System.Drawing.Size(166, 21);
             this.cmbUserRestore.TabIndex = 4;
+            this.cmbUserRestore.TextChanged += new System.EventHandler(this.cmbUserRestore_TextChanged);
             // 
             // btnExit
             // 

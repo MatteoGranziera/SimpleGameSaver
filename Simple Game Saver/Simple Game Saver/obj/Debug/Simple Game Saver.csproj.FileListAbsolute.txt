@@ -10,3 +10,10 @@ C:\Users\Matteo\Documents\Visual Studio 2013\Projects\SimpleGameSaver\Simple Gam
 D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\bin\Debug\Simple Game Saver.exe.config
 D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.exe
 D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.pdb
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.csprojResolveAssemblyReference.cache
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\SimpleGameSaver.frmMain.resources
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\SimpleGameSaver.frmSettings.resources
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\SimpleGameSaver.Properties.Resources.resources
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.csproj.GenerateResource.Cache
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\bin\Debug\Simple Game Saver.exe
+D:\Utenti\tomok_000\Git\GranzieraSNC\GranzieraSNC\SimpleGameSaver\Simple Game Saver\Simple Game Saver\bin\Debug\Simple Game Saver.pdb
