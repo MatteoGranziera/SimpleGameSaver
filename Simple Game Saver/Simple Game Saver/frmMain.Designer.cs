@@ -179,7 +179,7 @@
             this.grbRestoreOptions.Size = new System.Drawing.Size(238, 190);
             this.grbRestoreOptions.TabIndex = 5;
             this.grbRestoreOptions.TabStop = false;
-            this.grbRestoreOptions.Text = "Backup Options";
+            this.grbRestoreOptions.Text = "Restore Options";
             // 
             // ckbRestoreFromCloud
             // 
