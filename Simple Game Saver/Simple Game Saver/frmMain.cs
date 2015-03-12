@@ -25,6 +25,7 @@ namespace SimpleGameSaver
 
         private void cmbUsersSave_TextChanged(object sender, EventArgs e)
         {
+            LogSystem.Log("Event: cmbUserSave - TextChanged");
             if (cmbUsersSave.Text != "" && cmbUsersSave.Text != null)
             {
                 btnBackupSaves.Enabled = true;
@@ -37,6 +38,7 @@ namespace SimpleGameSaver
 
         private void cmbUserRestore_TextChanged(object sender, EventArgs e)
         {
+            LogSystem.Log("Event: cmbUserRestore - TextChanged");
             if (cmbUserRestore.Text != "" && cmbUserRestore.Text != null)
             {
                 btnRestoreSaves.Enabled = true;
@@ -49,23 +51,27 @@ namespace SimpleGameSaver
 
         private void btnSetUp_Click(object sender, EventArgs e)
         {
+            LogSystem.Log("Event: btnSetUp - Click");
             frmSettings settings = new frmSettings();
             settings.ShowDialog();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            LogSystem.Log("Event: btnExit - Click");
             this.Close();
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            LogSystem.Log("Event: settingsToolStripMenuItem - Click");
             frmSettings settings = new frmSettings();
             settings.ShowDialog();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            LogSystem.Log("Event: exitToolStripMenuItem - Click");
             this.Close();
         }
     }

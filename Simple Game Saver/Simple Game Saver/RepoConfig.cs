@@ -30,7 +30,7 @@ namespace SimpleGameSaver
             try
             {
                 doc.Save(filename);
-                LogSystem.Log("File Saved : " + filename);
+                LogSystem.Log("Config file saved correctly : " + filename);
                 return true;
             }
             catch (Exception e)
@@ -49,16 +49,20 @@ namespace SimpleGameSaver
                 {
                     if(File.Exists(filename))
                     {
+                        LogSystem.Log("Config file exists  : " + filename);
                         doc = new XmlDocument();
                         doc.Load(filename);
                         rootNode = doc.ChildNodes[1];
+                        LogSystem.Log("Config file loaded correctly  : " + filename);
                     }
                     else
                     {
+                        LogSystem.Log("Config file not exists  : " + filename);
                         doc = new XmlDocument();
                         rootNode = doc.CreateElement("root");
                         doc.AppendChild(rootNode);
                         doc.InsertBefore(doc.CreateXmlDeclaration("1.0", null, null), doc.DocumentElement);
+                        LogSystem.Log("new config file created : " + filename);
                         return WriteChanges();
                     }
                     return true;
@@ -66,15 +70,21 @@ namespace SimpleGameSaver
                 catch (FileNotFoundException xmlE)
                 {
                     //Exception
+                    LogSystem.LogError(xmlE);
                     return false;
                 }
                 catch(Exception e)
                 {
                     //Exception
+                    LogSystem.LogError(e);
                     return false;
                 }
             }
-            return false;
+            else
+            {
+                LogSystem.Log("Config file not setted, please default constructor RepoConfig(string filename)");
+                return false;
+            }
         }
 
         public bool AddUser(string user)
@@ -83,12 +93,21 @@ namespace SimpleGameSaver
             {
                 return false;
             }
+            if (rootNode.SelectSingleNode(TAG_USER + "[" + PROPERTY_USER_NAME + "=" + user + "]") == null)
+            {
+                XmlElement el = doc.CreateElement(TAG_USER);
+                el.SetAttribute(PROPERTY_USER_NAME, user);
+                rootNode.AppendChild(el);
+                LogSystem.Log("AddUser: user created");
+                return WriteChanges();
+            }
+            else
+            {
+                LogSystem.Log("AddUser: user already exists");
+                return false;
+            }
 
-            XmlElement el = doc.CreateElement(TAG_USER);
-            el.SetAttribute(PROPERTY_USER_NAME, user);
-            rootNode.AppendChild(el);
-
-            return WriteChanges();
+            
         }
 
         public void WriteGame(GameItem gi)
@@ -120,6 +139,7 @@ namespace SimpleGameSaver
             catch(NullReferenceException e)
             {
                 //Exception
+                LogSystem.LogError(e);
                 return null;
             }
 
