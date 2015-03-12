@@ -12,7 +12,13 @@ namespace SimpleGameSaver
     public class RepoConfig
     {
         private String TAG_USER = "User";
+        private String TAG_GAME = "Game";
+        private String TAG_FOLDER = "Folder";
         private String PROPERTY_USER_NAME = "name";
+        private String PROPERTY_FOLDER_TYPE = "type";
+        private String PROPERTY_FOLDER_PATH = "path";
+        private String PROPERTY_FOLDER_TYPE_CONFIG = "configFolder";
+        private String PROPERTY_FOLDER_TYPE_SAVE = "SaveFolder";
 
         private XmlDocument doc = null;
         private XmlNode rootNode = null;
@@ -110,19 +116,52 @@ namespace SimpleGameSaver
             
         }
 
-        public void WriteGame(GameItem gi)
+        public bool WriteGame(GameItem gi)
         {
+            if (!InizializeFile())
+            {
+                return false;
+            }
 
+            try
+            {
+                XmlNode user = rootNode.SelectSingleNode(TAG_USER);
+
+                user.RemoveAll();
+                XmlElement game = doc.CreateElement(TAG_GAME);
+                user.AppendChild(game);
+                foreach (string paths in gi.SaveFolders)
+                {
+                    XmlElement save = doc.CreateElement(TAG_FOLDER);
+                    save.SetAttribute(PROPERTY_FOLDER_TYPE, PROPERTY_FOLDER_TYPE_SAVE);
+                    game.AppendChild(save);
+                }
+
+                foreach (string paths in gi.ConfigFolders)
+                {
+                    XmlElement config = doc.CreateElement(TAG_FOLDER);
+                    config.SetAttribute(PROPERTY_FOLDER_TYPE, PROPERTY_FOLDER_TYPE_CONFIG);
+                    game.AppendChild(config);
+                }
+
+                return WriteChanges();
+            }
+            catch (Exception e)
+            {
+                //Exception
+                LogSystem.LogError(e);
+                return false;
+            }
         }
 
-        public void WriteGames(List<GameItem> gis)
+        public bool WriteGames(List<GameItem> gis)
         {
-
+            return true;
         }
 
         public List<String> GetUsers()
         {
-            List<String> users = new List<string>();
+            List<String> users = new List<String>();
 
             if (!InizializeFile())
             {
@@ -145,6 +184,18 @@ namespace SimpleGameSaver
 
             return users;
         }
+
+        /*public List<GameItem> GetGamesByUser(string user)
+        {
+            List<GameItem> games = new List<GameItem>();
+
+            if (!InizializeFile())
+            {
+                return games;
+            }
+
+            
+        }*/
 
 
 

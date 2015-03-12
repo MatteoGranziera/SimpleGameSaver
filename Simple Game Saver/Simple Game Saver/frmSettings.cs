@@ -37,5 +37,10 @@ namespace SimpleGameSaver
             cmbUsers.Items.Clear();
             cmbUsers.Items.AddRange(repoC.GetUsers().ToArray());
         }
+
+        private void btnSetUser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

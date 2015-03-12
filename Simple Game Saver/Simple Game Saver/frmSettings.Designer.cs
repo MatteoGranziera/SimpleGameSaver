@@ -31,18 +31,18 @@
             this.cmbUsers = new System.Windows.Forms.ComboBox();
             this.lblUser = new System.Windows.Forms.Label();
             this.grbList = new System.Windows.Forms.GroupBox();
-            this.btnSetUser = new System.Windows.Forms.Button();
-            this.grbAddUser = new System.Windows.Forms.GroupBox();
-            this.txtAddUser = new System.Windows.Forms.TextBox();
-            this.btnAddUser = new System.Windows.Forms.Button();
-            this.trvGamesList = new System.Windows.Forms.TreeView();
-            this.lblActualUser = new System.Windows.Forms.Label();
-            this.grbAddGame = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnAddGame = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.btnAddConfigFolder = new System.Windows.Forms.Button();
             this.btnAddGameFolder = new System.Windows.Forms.Button();
+            this.btnAddConfigFolder = new System.Windows.Forms.Button();
+            this.lblActualUser = new System.Windows.Forms.Label();
+            this.btnSetUser = new System.Windows.Forms.Button();
+            this.trvGamesList = new System.Windows.Forms.TreeView();
+            this.grbAddUser = new System.Windows.Forms.GroupBox();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.txtAddUser = new System.Windows.Forms.TextBox();
+            this.grbAddGame = new System.Windows.Forms.GroupBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnAddGame = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,6 +92,34 @@
             this.grbList.TabStop = false;
             this.grbList.Text = "Actual User";
             // 
+            // btnAddGameFolder
+            // 
+            this.btnAddGameFolder.Location = new System.Drawing.Point(10, 311);
+            this.btnAddGameFolder.Name = "btnAddGameFolder";
+            this.btnAddGameFolder.Size = new System.Drawing.Size(108, 27);
+            this.btnAddGameFolder.TabIndex = 5;
+            this.btnAddGameFolder.Text = "Add Save Folder";
+            this.btnAddGameFolder.UseVisualStyleBackColor = true;
+            // 
+            // btnAddConfigFolder
+            // 
+            this.btnAddConfigFolder.Location = new System.Drawing.Point(124, 311);
+            this.btnAddConfigFolder.Name = "btnAddConfigFolder";
+            this.btnAddConfigFolder.Size = new System.Drawing.Size(104, 27);
+            this.btnAddConfigFolder.TabIndex = 4;
+            this.btnAddConfigFolder.Text = "Add Config Folder";
+            this.btnAddConfigFolder.UseVisualStyleBackColor = true;
+            // 
+            // lblActualUser
+            // 
+            this.lblActualUser.AutoSize = true;
+            this.lblActualUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActualUser.Location = new System.Drawing.Point(15, 52);
+            this.lblActualUser.Name = "lblActualUser";
+            this.lblActualUser.Size = new System.Drawing.Size(40, 17);
+            this.lblActualUser.TabIndex = 1;
+            this.lblActualUser.Text = "user";
+            // 
             // btnSetUser
             // 
             this.btnSetUser.Location = new System.Drawing.Point(199, 18);
@@ -100,6 +128,17 @@
             this.btnSetUser.TabIndex = 3;
             this.btnSetUser.Text = "Set User";
             this.btnSetUser.UseVisualStyleBackColor = true;
+            this.btnSetUser.Click += new System.EventHandler(this.btnSetUser_Click);
+            // 
+            // trvGamesList
+            // 
+            this.trvGamesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trvGamesList.Location = new System.Drawing.Point(10, 77);
+            this.trvGamesList.Name = "trvGamesList";
+            this.trvGamesList.Size = new System.Drawing.Size(458, 213);
+            this.trvGamesList.TabIndex = 0;
             // 
             // grbAddUser
             // 
@@ -112,13 +151,6 @@
             this.grbAddUser.TabStop = false;
             this.grbAddUser.Text = "Add User";
             // 
-            // txtAddUser
-            // 
-            this.txtAddUser.Location = new System.Drawing.Point(6, 21);
-            this.txtAddUser.Name = "txtAddUser";
-            this.txtAddUser.Size = new System.Drawing.Size(139, 20);
-            this.txtAddUser.TabIndex = 0;
-            // 
             // btnAddUser
             // 
             this.btnAddUser.Location = new System.Drawing.Point(70, 47);
@@ -129,25 +161,12 @@
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
-            // trvGamesList
+            // txtAddUser
             // 
-            this.trvGamesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trvGamesList.Location = new System.Drawing.Point(10, 77);
-            this.trvGamesList.Name = "trvGamesList";
-            this.trvGamesList.Size = new System.Drawing.Size(458, 213);
-            this.trvGamesList.TabIndex = 0;
-            // 
-            // lblActualUser
-            // 
-            this.lblActualUser.AutoSize = true;
-            this.lblActualUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActualUser.Location = new System.Drawing.Point(15, 52);
-            this.lblActualUser.Name = "lblActualUser";
-            this.lblActualUser.Size = new System.Drawing.Size(40, 17);
-            this.lblActualUser.TabIndex = 1;
-            this.lblActualUser.Text = "user";
+            this.txtAddUser.Location = new System.Drawing.Point(6, 21);
+            this.txtAddUser.Name = "txtAddUser";
+            this.txtAddUser.Size = new System.Drawing.Size(139, 20);
+            this.txtAddUser.TabIndex = 0;
             // 
             // grbAddGame
             // 
@@ -163,23 +182,6 @@
             this.grbAddGame.TabStop = false;
             this.grbAddGame.Text = "Add Game";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(139, 20);
-            this.textBox1.TabIndex = 1;
-            // 
-            // btnAddGame
-            // 
-            this.btnAddGame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddGame.Location = new System.Drawing.Point(70, 211);
-            this.btnAddGame.Name = "btnAddGame";
-            this.btnAddGame.Size = new System.Drawing.Size(75, 23);
-            this.btnAddGame.TabIndex = 2;
-            this.btnAddGame.Text = "Add Game";
-            this.btnAddGame.UseVisualStyleBackColor = true;
-            // 
             // listBox1
             // 
             this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -191,23 +193,22 @@
             this.listBox1.Size = new System.Drawing.Size(139, 147);
             this.listBox1.TabIndex = 3;
             // 
-            // btnAddConfigFolder
+            // btnAddGame
             // 
-            this.btnAddConfigFolder.Location = new System.Drawing.Point(124, 311);
-            this.btnAddConfigFolder.Name = "btnAddConfigFolder";
-            this.btnAddConfigFolder.Size = new System.Drawing.Size(104, 27);
-            this.btnAddConfigFolder.TabIndex = 4;
-            this.btnAddConfigFolder.Text = "Add Config Folder";
-            this.btnAddConfigFolder.UseVisualStyleBackColor = true;
+            this.btnAddGame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddGame.Location = new System.Drawing.Point(70, 211);
+            this.btnAddGame.Name = "btnAddGame";
+            this.btnAddGame.Size = new System.Drawing.Size(75, 23);
+            this.btnAddGame.TabIndex = 2;
+            this.btnAddGame.Text = "Add Game";
+            this.btnAddGame.UseVisualStyleBackColor = true;
             // 
-            // btnAddGameFolder
+            // textBox1
             // 
-            this.btnAddGameFolder.Location = new System.Drawing.Point(10, 311);
-            this.btnAddGameFolder.Name = "btnAddGameFolder";
-            this.btnAddGameFolder.Size = new System.Drawing.Size(108, 27);
-            this.btnAddGameFolder.TabIndex = 5;
-            this.btnAddGameFolder.Text = "Add Save Folder";
-            this.btnAddGameFolder.UseVisualStyleBackColor = true;
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(139, 20);
+            this.textBox1.TabIndex = 1;
             // 
             // menuStrip1
             // 
@@ -232,7 +233,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // toolsToolStripMenuItem
@@ -246,7 +247,7 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // toolStripMenuItem1
@@ -260,10 +261,10 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // frmMain
+            // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -273,7 +274,7 @@
             this.Controls.Add(this.grbList);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmMain";
+            this.Name = "frmSettings";
             this.Text = "Simple Game Saver";
             this.grbList.ResumeLayout(false);
             this.grbList.PerformLayout();
