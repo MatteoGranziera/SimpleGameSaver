@@ -17,6 +17,7 @@ namespace SimpleGameSaver
         {
             InitializeComponent();
             repoC = new RepoConfig("settings.xml");
+            UpdateUsers();
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -24,7 +25,17 @@ namespace SimpleGameSaver
             if (txtAddUser.Text != "")
             {
                 repoC.AddUser(txtAddUser.Text);
+                UpdateUsers();
+                txtAddUser.Text = "";
             }
+        }
+
+        private void UpdateUsers()
+        {
+            string selected = cmbUsers.SelectedText;
+
+            cmbUsers.Items.Clear();
+            cmbUsers.Items.AddRange(repoC.GetUsers().ToArray());
         }
     }
 }
