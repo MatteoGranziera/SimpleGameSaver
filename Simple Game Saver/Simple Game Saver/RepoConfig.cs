@@ -81,7 +81,8 @@ namespace SimpleGameSaver
             }
 
             XmlElement el = doc.CreateElement("User");
-            el.SetAttribute("name", user);
+            el.SetAttribute("id", user);
+            if((XmlNodeList as doc).SelectSingleNode("User[name='"+user+"']"))
             doc.AppendChild(el);
 
             return true;
