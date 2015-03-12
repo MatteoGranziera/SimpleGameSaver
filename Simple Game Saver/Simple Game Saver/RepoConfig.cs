@@ -11,6 +11,7 @@ namespace SimpleGameSaver
     public class RepoConfig
     {
         private XmlDocument doc = null;
+        private XmlNode rootNode = null;
         public string filename{
             get; set;
         }
@@ -24,9 +25,7 @@ namespace SimpleGameSaver
         {
             try
             {
-                XmlTextWriter writer = new XmlTextWriter(filename, null);
-                writer.Formatting = Formatting.Indented;
-                doc.Save(writer);
+                doc.Save(filename);
                 return true;
             }
             catch (Exception e)
@@ -42,27 +41,24 @@ namespace SimpleGameSaver
             {
                 try
                 {
-                    if(!File.Exists(filename))
+                    if(File.Exists(filename))
                     {
                         doc = new XmlDocument();
                         doc.Load(filename);
+                        rootNode = doc.FirstChild;
+                    }
+                    else
+                    {
+                        doc = new XmlDocument();
+                        doc.AppendChild(doc.CreateElement("root"));
+                        return WriteChanges();
                     }
                     return true;
                 }
                 catch (FileNotFoundException xmlE)
                 {
                     //Exception
-                    try
-                    {
-                        XmlTextWriter writer = new XmlTextWriter(filename, null);
-                        writer.Formatting = Formatting.Indented;
-                        doc.Save(writer);
-                        return true;
-                    }
-                    catch (Exception e)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
                 catch(Exception e)
                 {
@@ -82,9 +78,9 @@ namespace SimpleGameSaver
 
             XmlElement el = doc.CreateElement("User");
             el.SetAttribute("name", user);
-            doc.AppendChild(el);
+            rootNode.AppendChild(el);
 
-            return true;
+            return WriteChanges();
         }
 
         public void WriteGame(GameItem gi)

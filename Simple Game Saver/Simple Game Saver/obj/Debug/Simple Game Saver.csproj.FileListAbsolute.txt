@@ -23,3 +23,10 @@ D:\Utenti\tomok_000\Git\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\
 C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\bin\Debug\Simple Game Saver.exe.config
 C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.exe
 C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.pdb
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\bin\Debug\Simple Game Saver.exe
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\bin\Debug\Simple Game Saver.pdb
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.csprojResolveAssemblyReference.cache
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\SimpleGameSaver.frmMain.resources
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\SimpleGameSaver.frmSettings.resources
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\SimpleGameSaver.Properties.Resources.resources
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.csproj.GenerateResource.Cache
