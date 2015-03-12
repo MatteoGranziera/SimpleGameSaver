@@ -12,14 +12,19 @@ namespace SimpleGameSaver
 {
     public partial class frmSettings : Form
     {
+        RepoConfig repoC;
         public frmSettings()
         {
             InitializeComponent();
+            repoC = new RepoConfig("settings.xml");
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-
+            if (txtAddUser.Text != "")
+            {
+                repoC.AddUser(txtAddUser.Text);
+            }
         }
     }
 }
