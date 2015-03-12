@@ -15,7 +15,7 @@ namespace DebugSystem.DebugService
         private static bool _eliminaLog;
         private static bool _console = false;
 
-        public static Stream LogStream { get; private set; }
+        public static System.Windows.Forms.TextBox LogTextBox { get; set; }
 
         public static bool Console
         {
@@ -40,6 +40,12 @@ namespace DebugSystem.DebugService
             StreamWriter sw = new StreamWriter(_filename, true);
             sw.WriteLine("- |" + DateTime.Now + " | " + messaggio);
             sw.Close();
+
+            if (LogTextBox != null)
+            {
+                LogTextBox.AppendText("- |" + DateTime.Now + " | " + messaggio + "/r/n" );
+            }
+
             if (_console == true)
             {
                 //System.Console.WriteLine("- |" + DateTime.Now + " | " + messaggio);
