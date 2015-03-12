@@ -10,6 +10,9 @@ namespace SimpleGameSaver
 {
     public class RepoConfig
     {
+        private String TAG_USER = "User";
+        private String PROPERTY_USER_NAME = "name";
+
         private XmlDocument doc = null;
         private XmlNode rootNode = null;
         public string filename{
@@ -78,8 +81,8 @@ namespace SimpleGameSaver
                 return false;
             }
 
-            XmlElement el = doc.CreateElement("User");
-            el.SetAttribute("name", user);
+            XmlElement el = doc.CreateElement(TAG_USER);
+            el.SetAttribute(PROPERTY_USER_NAME, user);
             rootNode.AppendChild(el);
 
             return WriteChanges();
@@ -94,6 +97,33 @@ namespace SimpleGameSaver
         {
 
         }
+
+        public List<String> GetUsers()
+        {
+            if (!InizializeFile())
+            {
+                return null;
+            }
+
+            List<String> users = new List<string>();
+
+            try
+            {
+                foreach (XmlNode node in rootNode.SelectNodes(TAG_USER))
+                {
+                    users.Add(node.Attributes[PROPERTY_USER_NAME].Value);
+                }
+            }
+            catch(NullReferenceException e)
+            {
+                //Exception
+                return null;
+            }
+
+            return users;
+        }
+
+
 
     }
 }
