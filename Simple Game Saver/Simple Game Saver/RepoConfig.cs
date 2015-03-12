@@ -45,12 +45,14 @@ namespace SimpleGameSaver
                     {
                         doc = new XmlDocument();
                         doc.Load(filename);
-                        rootNode = doc.FirstChild;
+                        rootNode = doc.ChildNodes[1];
                     }
                     else
                     {
                         doc = new XmlDocument();
-                        doc.AppendChild(doc.CreateElement("root"));
+                        rootNode = doc.CreateElement("root");
+                        doc.AppendChild(rootNode);
+                        doc.InsertBefore(doc.CreateXmlDeclaration("1.0", null, null), doc.DocumentElement);
                         return WriteChanges();
                     }
                     return true;
