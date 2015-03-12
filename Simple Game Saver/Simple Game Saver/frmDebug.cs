@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DebugSystem.DebugService;
 
 namespace SimpleGameSaver
 {
@@ -15,6 +16,7 @@ namespace SimpleGameSaver
         public frmDebug()
         {
             InitializeComponent();
+            LogSystem.LogRichTextBox = rtxtDebug;
         }
     }
 }

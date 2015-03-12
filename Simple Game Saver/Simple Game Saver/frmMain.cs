@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DebugSystem.DebugService;
 
 namespace SimpleGameSaver
 {
@@ -17,6 +18,9 @@ namespace SimpleGameSaver
             InitializeComponent();
             btnBackupSaves.Enabled = false;
             btnRestoreSaves.Enabled = false;
+            frmDebug debug = new frmDebug();
+            debug.Show();
+            LogSystem.Log("Main Form Opened");
         }
 
         private void cmbUsersSave_TextChanged(object sender, EventArgs e)

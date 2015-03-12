@@ -30,12 +30,13 @@ namespace SimpleGameSaver
             try
             {
                 doc.Save(filename);
+                LogSystem.Log("File Saved : " + filename);
                 return true;
             }
             catch (Exception e)
             {
                 //Exception
-                LogSystem.Log();
+                LogSystem.LogError(e);
                 return false;
             }
         }

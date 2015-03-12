@@ -55,7 +55,7 @@ namespace DebugSystem.DebugService
 
             if (LogRichTextBox != null)
             {
-                LogRichTextBox.AppendText("- |" + DateTime.Now + " | " + messaggio + "/r/n");
+                LogRichTextBox.AppendText("- | " + DateTime.Now + " | " + messaggio + Environment.NewLine);
                 LogRichTextBox.SelectionColor = color;
             }
 

@@ -30,3 +30,6 @@ C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver
 C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\SimpleGameSaver.frmSettings.resources
 C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\SimpleGameSaver.Properties.Resources.resources
 C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\Simple Game Saver.csproj.GenerateResource.Cache
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\obj\Debug\SimpleGameSaver.frmDebug.resources
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\bin\Debug\DebugSystem.dll
+C:\Users\Matteo\Source\Repos\SimpleGameSaver\Simple Game Saver\Simple Game Saver\bin\Debug\DebugSystem.pdb
