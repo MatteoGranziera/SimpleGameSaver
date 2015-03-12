@@ -122,12 +122,12 @@ namespace SimpleGameSaver
 
         public List<String> GetUsers()
         {
+            List<String> users = new List<string>();
+
             if (!InizializeFile())
             {
-                return null;
+                return users;
             }
-
-            List<String> users = new List<string>();
 
             try
             {
@@ -140,7 +140,7 @@ namespace SimpleGameSaver
             {
                 //Exception
                 LogSystem.LogError(e);
-                return null;
+                return new List<string>();
             }
 
             return users;
