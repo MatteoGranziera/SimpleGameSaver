@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace DebugSystem.DebugService
 {
@@ -16,6 +17,7 @@ namespace DebugSystem.DebugService
         private static bool _console = false;
 
         public static System.Windows.Forms.TextBox LogTextBox { get; set; }
+        public static System.Windows.Forms.RichTextBox LogRichTextBox { get; set; }
 
         public static bool Console
         {
@@ -29,6 +31,11 @@ namespace DebugSystem.DebugService
         }
 
         public static void Log(string messaggio)
+        {
+            Log(messaggio, Color.Black);
+        }
+
+        public static void Log(string messaggio, Color color)
         {
             if (_primoAvvio == true)
             {
@@ -44,6 +51,12 @@ namespace DebugSystem.DebugService
             if (LogTextBox != null)
             {
                 LogTextBox.AppendText("- |" + DateTime.Now + " | " + messaggio + "/r/n" );
+            }
+
+            if (LogRichTextBox != null)
+            {
+                LogRichTextBox.AppendText("- |" + DateTime.Now + " | " + messaggio + "/r/n");
+                LogRichTextBox.SelectionColor = color;
             }
 
             if (_console == true)
@@ -65,12 +78,12 @@ namespace DebugSystem.DebugService
             Log("{Errore: ( " + nomeF +
                 "[" + linea +
                 "]: " + metodo.TrimStart() +
-                " }: " + ex.Message);
+                " }: " + ex.Message, Color.Red);
         }
 
         public static void LogDatabase(string messaggio)
         {
-            Log("[Database]: " + messaggio);
+            Log("[Database]: " + messaggio, Color.Gray);
         }
     }
 }

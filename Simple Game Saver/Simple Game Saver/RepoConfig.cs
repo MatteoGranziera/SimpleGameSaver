@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Xml;
+using DebugSystem.DebugService;
 
 namespace SimpleGameSaver
 {
@@ -34,6 +35,7 @@ namespace SimpleGameSaver
             catch (Exception e)
             {
                 //Exception
+                LogSystem.Log();
                 return false;
             }
         }
