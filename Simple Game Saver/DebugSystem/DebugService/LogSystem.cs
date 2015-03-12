@@ -55,7 +55,9 @@ namespace DebugSystem.DebugService
 
             if (LogRichTextBox != null)
             {
+                int initial = LogRichTextBox.Text.Length;
                 LogRichTextBox.AppendText("- | " + DateTime.Now + " | " + messaggio + Environment.NewLine);
+                LogRichTextBox.Select(initial, LogRichTextBox.Text.Length - 1);
                 LogRichTextBox.SelectionColor = color;
             }
 
