@@ -156,7 +156,14 @@ namespace SimpleGameSaver
 
         public bool WriteGames(List<GameItem> gis)
         {
-            return true;
+            bool ok = true;
+            foreach (var gi in gis)
+            {
+                if(ok)
+                    ok = WriteGame(gi);
+            }
+
+            return ok;
         }
 
         public List<String> GetUsers()
