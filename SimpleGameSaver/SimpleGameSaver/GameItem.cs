@@ -18,5 +18,10 @@ namespace SimpleGameSaver
             this.name = name;
             this.user = user;
         }
+
+        public GameItem()
+        {
+
+        }
     }
 }
