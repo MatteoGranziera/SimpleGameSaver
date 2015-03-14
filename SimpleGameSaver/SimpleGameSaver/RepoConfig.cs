@@ -131,17 +131,19 @@ namespace SimpleGameSaver
                 user.RemoveAll();
                 XmlElement game = doc.CreateElement(TAG_GAME);
                 user.AppendChild(game);
-                foreach (string paths in gi.SaveFolders)
+                foreach (string path in gi.SaveFolders)
                 {
                     XmlElement save = doc.CreateElement(TAG_FOLDER);
                     save.SetAttribute(PROPERTY_FOLDER_TYPE, PROPERTY_FOLDER_TYPE_SAVE);
+                    save.InnerText = path;
                     game.AppendChild(save);
                 }
 
-                foreach (string paths in gi.ConfigFolders)
+                foreach (string path in gi.ConfigFolders)
                 {
                     XmlElement config = doc.CreateElement(TAG_FOLDER);
                     config.SetAttribute(PROPERTY_FOLDER_TYPE, PROPERTY_FOLDER_TYPE_CONFIG);
+                    config.InnerText = path;
                     game.AppendChild(config);
                 }
 
