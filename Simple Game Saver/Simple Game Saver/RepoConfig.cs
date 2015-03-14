@@ -15,6 +15,7 @@ namespace SimpleGameSaver
         private String TAG_GAME = "Game";
         private String TAG_FOLDER = "Folder";
         private String PROPERTY_USER_NAME = "name";
+        private String PROPERTY_GAME_NAME = "name";
         private String PROPERTY_FOLDER_TYPE = "type";
         private String PROPERTY_FOLDER_PATH = "path";
         private String PROPERTY_FOLDER_TYPE_CONFIG = "configFolder";
@@ -192,7 +193,7 @@ namespace SimpleGameSaver
             return users;
         }
 
-        /*public List<GameItem> GetGamesByUser(string user)
+        public List<GameItem> GetGamesByUser(string user)
         {
             List<GameItem> games = new List<GameItem>();
 
@@ -200,9 +201,21 @@ namespace SimpleGameSaver
             {
                 return games;
             }
+            try
+            {
+                foreach (XmlNode game in rootNode.SelectNodes(TAG_USER + "[" + PROPERTY_USER_NAME + "=" + user + "]/" + TAG_GAME))
+                {
+                    //5games.Add(game.Attributes[PROPERTY_GAME_NAME].Value);
+                }
+            }
+            catch (Exception e)
+            {
 
+            }
+
+            return games;
             
-        }*/
+        }
 
 
 
