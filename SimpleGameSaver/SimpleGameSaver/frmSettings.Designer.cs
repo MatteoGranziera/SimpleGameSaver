@@ -135,10 +135,14 @@
             this.trvGamesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.trvGamesList.CheckBoxes = true;
+            this.trvGamesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trvGamesList.ItemHeight = 18;
             this.trvGamesList.Location = new System.Drawing.Point(10, 77);
             this.trvGamesList.Name = "trvGamesList";
             this.trvGamesList.Size = new System.Drawing.Size(458, 213);
             this.trvGamesList.TabIndex = 0;
+            this.trvGamesList.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.trvGamesList_AfterCheck);
             // 
             // grbAddUser
             // 

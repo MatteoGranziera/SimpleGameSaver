@@ -104,6 +104,27 @@
       <Name>DebugSystem</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\joystick_1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\savefolder.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folderconfig.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filesave.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fileconfig.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
