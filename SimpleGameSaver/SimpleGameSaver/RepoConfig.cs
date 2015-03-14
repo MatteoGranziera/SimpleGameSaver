@@ -205,12 +205,27 @@ namespace SimpleGameSaver
             {
                 foreach (XmlNode game in rootNode.SelectNodes(TAG_USER + "[" + PROPERTY_USER_NAME + "=" + user + "]/" + TAG_GAME))
                 {
-                    //5games.Add(game.Attributes[PROPERTY_GAME_NAME].Value);
+                    GameItem item = new GameItem();
+
+                    item.name = game.Attributes[PROPERTY_GAME_NAME].Value;
+                    item.user = user;
+
+                    foreach (XmlNode save in game.SelectNodes(TAG_FOLDER + "[" + PROPERTY_FOLDER_TYPE + "=" + PROPERTY_FOLDER_TYPE_SAVE + "]"))
+                    {
+                        item.SaveFolders.Add(save.InnerText);
+                    }
+
+                    foreach (XmlNode config in game.SelectNodes(TAG_FOLDER + "[" + PROPERTY_FOLDER_TYPE + "=" + PROPERTY_FOLDER_TYPE_CONFIG + "]"))
+                    {
+                        item.ConfigFolders.Add(config.InnerText);
+                    }
+                    
                 }
             }
             catch (Exception e)
             {
-
+                //Exception
+                LogSystem.LogError(e);
             }
 
             return games;
