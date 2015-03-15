@@ -123,7 +123,12 @@ namespace SimpleGameSaver
 
         private void btnSetUser_Click(object sender, EventArgs e)
         {
-            UpdateGames();
+            if (cmbUsers.Text != "")
+            {
+                user = cmbUsers.Text;
+                UpdateGames();
+            }
+            
         }
 
         private void trvGamesList_AfterCheck(object sender, TreeViewEventArgs e)
