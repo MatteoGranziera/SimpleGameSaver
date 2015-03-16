@@ -138,5 +138,11 @@ namespace SimpleGameSaver
                 child.Checked = e.Node.Checked;
             }
         }
+
+        private void btnAddGameFolder_Click(object sender, EventArgs e)
+        {
+            AddFolderDialog addF = new AddFolderDialog();
+            addF.ShowDialog();
+        }
     }
 }

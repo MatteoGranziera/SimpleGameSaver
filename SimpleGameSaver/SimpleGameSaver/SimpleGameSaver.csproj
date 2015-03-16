@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFolderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFolderDialog.Designer.cs">
+      <DependentUpon>AddFolderDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDebug.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepoConfig.cs" />
+    <EmbeddedResource Include="AddFolderDialog.resx">
+      <DependentUpon>AddFolderDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDebug.resx">
       <DependentUpon>frmDebug.cs</DependentUpon>
     </EmbeddedResource>

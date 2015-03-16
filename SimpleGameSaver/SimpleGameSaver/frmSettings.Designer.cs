@@ -88,22 +88,25 @@
             this.grbList.Controls.Add(this.cmbUsers);
             this.grbList.Location = new System.Drawing.Point(170, 27);
             this.grbList.Name = "grbList";
-            this.grbList.Size = new System.Drawing.Size(481, 329);
+            this.grbList.Size = new System.Drawing.Size(481, 338);
             this.grbList.TabIndex = 2;
             this.grbList.TabStop = false;
             this.grbList.Text = "Actual User";
             // 
             // btnAddGameFolder
             // 
+            this.btnAddGameFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddGameFolder.Location = new System.Drawing.Point(10, 311);
             this.btnAddGameFolder.Name = "btnAddGameFolder";
             this.btnAddGameFolder.Size = new System.Drawing.Size(108, 27);
             this.btnAddGameFolder.TabIndex = 5;
             this.btnAddGameFolder.Text = "Add Save Folder";
             this.btnAddGameFolder.UseVisualStyleBackColor = true;
+            this.btnAddGameFolder.Click += new System.EventHandler(this.btnAddGameFolder_Click);
             // 
             // btnAddConfigFolder
             // 
+            this.btnAddConfigFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddConfigFolder.Location = new System.Drawing.Point(124, 311);
             this.btnAddConfigFolder.Name = "btnAddConfigFolder";
             this.btnAddConfigFolder.Size = new System.Drawing.Size(104, 27);
@@ -141,7 +144,7 @@
             this.trvGamesList.ItemHeight = 18;
             this.trvGamesList.Location = new System.Drawing.Point(10, 77);
             this.trvGamesList.Name = "trvGamesList";
-            this.trvGamesList.Size = new System.Drawing.Size(458, 213);
+            this.trvGamesList.Size = new System.Drawing.Size(458, 222);
             this.trvGamesList.TabIndex = 0;
             this.trvGamesList.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.trvGamesList_AfterCheck);
             // 
@@ -182,7 +185,7 @@
             this.grbAddGame.Controls.Add(this.textBox1);
             this.grbAddGame.Location = new System.Drawing.Point(12, 116);
             this.grbAddGame.Name = "grbAddGame";
-            this.grbAddGame.Size = new System.Drawing.Size(152, 240);
+            this.grbAddGame.Size = new System.Drawing.Size(152, 249);
             this.grbAddGame.TabIndex = 5;
             this.grbAddGame.TabStop = false;
             this.grbAddGame.Text = "Add Game";
@@ -195,13 +198,13 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(6, 46);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(139, 147);
+            this.listBox1.Size = new System.Drawing.Size(139, 160);
             this.listBox1.TabIndex = 3;
             // 
             // btnAddGame
             // 
             this.btnAddGame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddGame.Location = new System.Drawing.Point(70, 211);
+            this.btnAddGame.Location = new System.Drawing.Point(70, 220);
             this.btnAddGame.Name = "btnAddGame";
             this.btnAddGame.Size = new System.Drawing.Size(75, 23);
             this.btnAddGame.TabIndex = 2;
@@ -273,7 +276,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 363);
+            this.ClientSize = new System.Drawing.Size(663, 372);
             this.Controls.Add(this.grbAddGame);
             this.Controls.Add(this.grbAddUser);
             this.Controls.Add(this.grbList);
