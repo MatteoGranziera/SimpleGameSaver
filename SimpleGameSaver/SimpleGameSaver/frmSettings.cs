@@ -136,7 +136,8 @@ namespace SimpleGameSaver
 
         private void btnAddGameFolder_Click(object sender, EventArgs e)
         {
-            
+            AddFolderDialog addF = new AddFolderDialog();
+            addF.ShowDialog();
         }
     }
 }
