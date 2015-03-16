@@ -12,8 +12,9 @@ namespace SimpleGameSaver
 {
     public partial class AddFolderDialog : Form
     {
-        public String absolutePath { get; set; }
-        public String relativePath { get; set; }
+        private String absolutePath { get; set; }
+        private String relativePath { get; set; }
+        public String result { get; set; }
 
         private String TAG_USERFOLDER = "%USERPROFILE%";
         private String TAG_SYSTEMDRIVE = "%SYSTEMDRIVE%";
@@ -34,10 +35,12 @@ namespace SimpleGameSaver
             if (ckbAutoTag.Checked)
             {
                 txtRelativePath.Text = relativePath;
+                result = relativePath;
             }
             else
             {
                 txtRelativePath.Text = absolutePath;
+                result = absolutePath;
             }
             
         }
@@ -66,10 +69,12 @@ namespace SimpleGameSaver
             if (ckbAutoTag.Checked)
             {
                 txtRelativePath.Text = relativePath;
+                result = relativePath;
             }
             else
             {
                 txtRelativePath.Text = absolutePath;
+                result = absolutePath;
             }
         }
 
@@ -84,6 +89,7 @@ namespace SimpleGameSaver
             this.DialogResult = DialogResult.Cancel;
             absolutePath = "";
             relativePath = "";
+            result = "";
             this.Close();
 
         }
