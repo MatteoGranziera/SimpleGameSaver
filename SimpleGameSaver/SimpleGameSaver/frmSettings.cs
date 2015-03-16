@@ -14,8 +14,8 @@ namespace SimpleGameSaver
     {
         //Private variables
         private RepoConfig repoC;
-        private String user;
         private ImageList imgList;
+        private UserItem user;
 
         //Private static variables
         private int JOYSTICK_IMGE_IDEX = 0;
@@ -79,11 +79,12 @@ namespace SimpleGameSaver
         private void UpdateGames()
         {
             //Check if a user is selected
-            if (user != null && user != "")
+            if (user.Name != null && user.Name != "")
             {
-                List<GameItem> games = repoC.GetGamesByUser(user);
+                trvGamesList.Nodes.Clear();
+                user.Games = repoC.GetGamesByUser(user.Name);
 
-                foreach (GameItem game in games)
+                foreach (GameItem game in user.Games)
                 {
                     //Load game on TreeView
                     TreeNode gameNode = new TreeNode(game.name);
@@ -132,7 +133,7 @@ namespace SimpleGameSaver
         {
             if (cmbUsers.Text != "")
             {
-                user = cmbUsers.Text;
+                user = new UserItem(cmbUsers.Text);
                 UpdateGames();
             }
             
@@ -148,8 +149,20 @@ namespace SimpleGameSaver
 
         private void btnAddGameFolder_Click(object sender, EventArgs e)
         {
-            AddFolderDialog addF = new AddFolderDialog();
-            addF.ShowDialog();
+            if (user != null && user.Name != "")
+            {
+                GameItem game = user.Games.Where( g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.name).ToList()[0];
+
+                AddFolderDialog addF = new AddFolderDialog();
+                addF.ShowDialog();
+
+                if (addF.DialogResult == DialogResult.OK)
+                {
+                    game.SaveFolders.Add(addF.result);
+                }
+                repoC.WriteGame(game);
+                UpdateGames();
+            }
         }
     }
 }
