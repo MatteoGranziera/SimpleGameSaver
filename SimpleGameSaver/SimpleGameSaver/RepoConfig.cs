@@ -100,7 +100,7 @@ namespace SimpleGameSaver
             {
                 return false;
             }
-            if (rootNode.SelectSingleNode(TAG_USER + "[" + PROPERTY_USER_NAME + "=" + user + "]") == null)
+            if (rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user + "']") == null)
             {
                 XmlElement el = doc.CreateElement(TAG_USER);
                 el.SetAttribute(PROPERTY_USER_NAME, user);
