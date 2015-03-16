@@ -62,24 +62,9 @@ namespace SimpleGameSaver
 
         private void UpdateGames()
         {
-            //user = "ciao";
             if (user != null && user != "")
             {
                 List<GameItem> games = repoC.GetGamesByUser(user);
-
-                /*List<GameItem> games = new List<GameItem>();
-                GameItem gm = new GameItem();
-                gm.name = "Darksiders";
-                games.Add(gm);
-
-                gm.ConfigFolders = new List<string>();
-                gm.SaveFolders = new List<string>();
-
-                gm.SaveFolders.Add("C:/");
-                gm.SaveFolders.Add("C:/Matteo/");
-
-                gm.ConfigFolders.Add("C:/GranzyConf/");
-                gm.ConfigFolders.Add("C:/Conf/");*/
 
                 foreach (GameItem game in games)
                 {
