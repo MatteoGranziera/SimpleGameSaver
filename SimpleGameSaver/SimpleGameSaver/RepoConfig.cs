@@ -131,7 +131,7 @@ namespace SimpleGameSaver
                 user.RemoveAll();
                 user.SetAttribute( PROPERTY_USER_NAME,gi.user);
                 XmlElement game = doc.CreateElement(TAG_GAME);
-                game.SetAttribute(PROPERTY_GAME_NAME, game.Name);
+                game.SetAttribute(PROPERTY_GAME_NAME, gi.name);
                 user.AppendChild(game);
                 foreach (string path in gi.SaveFolders)
                 {
