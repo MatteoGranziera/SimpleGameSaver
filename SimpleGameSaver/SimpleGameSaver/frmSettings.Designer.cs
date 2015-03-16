@@ -101,6 +101,7 @@
             this.btnAddGameFolder.TabIndex = 5;
             this.btnAddGameFolder.Text = "Add Save Folder";
             this.btnAddGameFolder.UseVisualStyleBackColor = true;
+            this.btnAddGameFolder.Click += new System.EventHandler(this.btnAddGameFolder_Click);
             // 
             // btnAddConfigFolder
             // 
