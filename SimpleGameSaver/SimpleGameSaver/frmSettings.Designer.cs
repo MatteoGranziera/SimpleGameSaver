@@ -113,6 +113,7 @@
             this.btnAddConfigFolder.TabIndex = 4;
             this.btnAddConfigFolder.Text = "Add Config Folder";
             this.btnAddConfigFolder.UseVisualStyleBackColor = true;
+            this.btnAddConfigFolder.Click += new System.EventHandler(this.btnAddConfigFolder_Click);
             // 
             // lblActualUser
             // 

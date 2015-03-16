@@ -134,6 +134,7 @@ namespace SimpleGameSaver
             if (cmbUsers.Text != "")
             {
                 user = new UserItem(cmbUsers.Text);
+                lblActualUser.Text = user.Name;
                 UpdateGames();
             }
             
@@ -159,6 +160,24 @@ namespace SimpleGameSaver
                 if (addF.DialogResult == DialogResult.OK)
                 {
                     game.SaveFolders.Add(addF.result);
+                }
+                repoC.WriteGame(game);
+                UpdateGames();
+            }
+        }
+
+        private void btnAddConfigFolder_Click(object sender, EventArgs e)
+        {
+            if (user != null && user.Name != "")
+            {
+                GameItem game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.name).ToList()[0];
+
+                AddFolderDialog addF = new AddFolderDialog();
+                addF.ShowDialog();
+
+                if (addF.DialogResult == DialogResult.OK)
+                {
+                    game.ConfigFolders.Add(addF.result);
                 }
                 repoC.WriteGame(game);
                 UpdateGames();
