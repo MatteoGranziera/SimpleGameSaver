@@ -19,7 +19,7 @@ namespace SimpleGameSaver
         private String PROPERTY_FOLDER_TYPE = "type";
         private String PROPERTY_FOLDER_PATH = "path";
         private String PROPERTY_FOLDER_TYPE_CONFIG = "configFolder";
-        private String PROPERTY_FOLDER_TYPE_SAVE = "SaveFolder";
+        private String PROPERTY_FOLDER_TYPE_SAVE = "saveFolder";
 
         private XmlDocument doc = null;
         private XmlNode rootNode = null;
@@ -126,10 +126,12 @@ namespace SimpleGameSaver
 
             try
             {
-                XmlNode user = rootNode.SelectSingleNode(TAG_USER);
+                XmlElement user = (XmlElement)rootNode.SelectSingleNode(TAG_USER);
 
                 user.RemoveAll();
+                user.SetAttribute( PROPERTY_USER_NAME,gi.user);
                 XmlElement game = doc.CreateElement(TAG_GAME);
+                game.SetAttribute(PROPERTY_GAME_NAME, game.Name);
                 user.AppendChild(game);
                 foreach (string path in gi.SaveFolders)
                 {
@@ -205,22 +207,30 @@ namespace SimpleGameSaver
             }
             try
             {
-                foreach (XmlNode game in rootNode.SelectNodes(TAG_USER + "[" + PROPERTY_USER_NAME + "=" + user + "]/" + TAG_GAME))
+                String query = TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user + "']/" + TAG_GAME;
+                foreach (XmlNode game in rootNode.SelectNodes(query))
                 {
                     GameItem item = new GameItem();
 
                     item.name = game.Attributes[PROPERTY_GAME_NAME].Value;
                     item.user = user;
 
-                    foreach (XmlNode save in game.SelectNodes(TAG_FOLDER + "[" + PROPERTY_FOLDER_TYPE + "=" + PROPERTY_FOLDER_TYPE_SAVE + "]"))
+                    query = TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + PROPERTY_FOLDER_TYPE_SAVE + "']";
+                    item.SaveFolders = new List<string>();
+                    
+                    foreach (XmlNode save in game.SelectNodes(query))
                     {
                         item.SaveFolders.Add(save.InnerText);
                     }
 
-                    foreach (XmlNode config in game.SelectNodes(TAG_FOLDER + "[" + PROPERTY_FOLDER_TYPE + "=" + PROPERTY_FOLDER_TYPE_CONFIG + "]"))
+                    query = TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + PROPERTY_FOLDER_TYPE_CONFIG + "']";
+                    item.ConfigFolders = new List<string>();
+                    foreach (XmlNode config in game.SelectNodes(query))
                     {
                         item.ConfigFolders.Add(config.InnerText);
                     }
+
+                    games.Add(item);
                     
                 }
             }
