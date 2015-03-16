@@ -12,10 +12,12 @@ namespace SimpleGameSaver
 {
     public partial class frmSettings : Form
     {
+        //Private variables
         private RepoConfig repoC;
         private String user;
         private ImageList imgList;
 
+        //Private static variables
         private int JOYSTICK_IMGE_IDEX = 0;
         private int FOLDERSAVE_IMGE_IDEX = 1;
         private int FOLDERCONFIG_IMGE_IDEX = 2;
@@ -24,11 +26,15 @@ namespace SimpleGameSaver
         private int CONFIG_IMGE_IDEX = 5;
         private int SAVE_IMGE_IDEX = 6;
 
+        //Constructor
         public frmSettings()
         {
             InitializeComponent();
+            
+            //Inizialize class to read/write configuration file
             repoC = new RepoConfig("settings.xml");
 
+            //Load images list from resource
             imgList = new ImageList();
             imgList.Images.Add(Properties.Resources.joystick);
             imgList.Images.Add(Properties.Resources.foldersave);
@@ -38,14 +44,19 @@ namespace SimpleGameSaver
             imgList.Images.Add(Properties.Resources.config);
             imgList.Images.Add(Properties.Resources.save);
 
+            //Apply images list on TreeView
             trvGamesList.ImageList = imgList;
+
+            //Load users on DropDownList
             UpdateUsers();
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
+            //Check if is empty
             if (txtAddUser.Text != "")
             {
+                //Load user
                 repoC.AddUser(txtAddUser.Text);
                 UpdateUsers();
                 txtAddUser.Text = "";
@@ -58,24 +69,33 @@ namespace SimpleGameSaver
 
             cmbUsers.Items.Clear();
             cmbUsers.Items.AddRange(repoC.GetUsers().ToArray());
+
+            if (cmbUsers.Items.Contains(selected))
+            {
+                cmbUsers.SelectedItem = selected;
+            }
         }
 
         private void UpdateGames()
         {
+            //Check if a user is selected
             if (user != null && user != "")
             {
                 List<GameItem> games = repoC.GetGamesByUser(user);
 
                 foreach (GameItem game in games)
                 {
+                    //Load game on TreeView
                     TreeNode gameNode = new TreeNode(game.name);
                     gameNode.ImageIndex = JOYSTICK_IMGE_IDEX;
                     gameNode.SelectedImageIndex = JOYSTICK_IMGE_IDEX;
 
+                    //Load TreeNode to group all saves
                     TreeNode savesNode = new TreeNode("Saves");
                     savesNode.ImageIndex = SAVE_IMGE_IDEX;
                     savesNode.SelectedImageIndex = SAVE_IMGE_IDEX;
 
+                    //Load saves of game
                     foreach (String save in game.SaveFolders)
                     {
                         TreeNode saveNode = new TreeNode(save);
@@ -86,10 +106,12 @@ namespace SimpleGameSaver
 
                     gameNode.Nodes.Add(savesNode);
 
+                    //Load TreeNode to group all config
                     TreeNode configsNode = new TreeNode("Configurations");
                     configsNode.ImageIndex = CONFIG_IMGE_IDEX;
                     configsNode.SelectedImageIndex = CONFIG_IMGE_IDEX;
 
+                    //Load configs of game
                     foreach (String save in game.ConfigFolders)
                     {
                         TreeNode configNode = new TreeNode(save);
