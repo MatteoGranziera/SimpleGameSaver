@@ -139,8 +139,6 @@ namespace SimpleGameSaver
                 return false;
             }
 
-
-            return true;
         }
 
         public bool WriteGame(GameItem gi)
@@ -273,8 +271,6 @@ namespace SimpleGameSaver
             return games;
             
         }
-
-
 
     }
 }
