@@ -15,7 +15,7 @@ namespace SimpleGameSaver
         //Private variables
         private RepoConfig repoC;
         private ImageList imgList;
-        private UserItem user;
+        private UserItem user {get; set;}
 
         //Private static variables
         private int JOYSTICK_IMGE_IDEX = 0;
@@ -30,6 +30,9 @@ namespace SimpleGameSaver
         public frmSettings()
         {
             InitializeComponent();
+
+            lblActualGame.Text = "";
+            lblActualUser.Text = "";
             
             //Inizialize class to read/write configuration file
             repoC = new RepoConfig("settings.xml");
@@ -82,6 +85,7 @@ namespace SimpleGameSaver
             if (user.Name != null && user.Name != "")
             {
                 trvGamesList.Nodes.Clear();
+                lblActualGame.Text = "";
                 user.Games = repoC.GetGamesByUser(user.Name);
 
                 foreach (GameItem game in user.Games)
@@ -150,7 +154,7 @@ namespace SimpleGameSaver
 
         private void btnAddGameFolder_Click(object sender, EventArgs e)
         {
-            if (user != null && user.Name != "")
+            if (user != null && user.Name != "" && lblActualGame.Text != "")
             {
                 GameItem game = user.Games.Where( g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.name).ToList()[0];
 
@@ -168,7 +172,7 @@ namespace SimpleGameSaver
 
         private void btnAddConfigFolder_Click(object sender, EventArgs e)
         {
-            if (user != null && user.Name != "")
+            if (user != null && user.Name != "" && lblActualGame.Text != "")
             {
                 GameItem game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.name).ToList()[0];
 
@@ -181,6 +185,18 @@ namespace SimpleGameSaver
                 }
                 repoC.WriteGame(game);
                 UpdateGames();
+            }
+        }
+
+        private void trvGamesList_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if(e.Node != null)
+            {
+                lblActualGame.Text = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
+            }
+            else
+            {
+                lblActualGame.Text = "";
             }
         }
     }

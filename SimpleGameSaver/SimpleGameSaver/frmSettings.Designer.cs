@@ -31,6 +31,9 @@
             this.cmbUsers = new System.Windows.Forms.ComboBox();
             this.lblUser = new System.Windows.Forms.Label();
             this.grbList = new System.Windows.Forms.GroupBox();
+            this.lblActualGame = new System.Windows.Forms.Label();
+            this.lblActualGameL = new System.Windows.Forms.Label();
+            this.lblActualUserL = new System.Windows.Forms.Label();
             this.btnAddGameFolder = new System.Windows.Forms.Button();
             this.btnAddConfigFolder = new System.Windows.Forms.Button();
             this.lblActualUser = new System.Windows.Forms.Label();
@@ -79,6 +82,9 @@
             this.grbList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbList.Controls.Add(this.lblActualGame);
+            this.grbList.Controls.Add(this.lblActualGameL);
+            this.grbList.Controls.Add(this.lblActualUserL);
             this.grbList.Controls.Add(this.btnAddGameFolder);
             this.grbList.Controls.Add(this.btnAddConfigFolder);
             this.grbList.Controls.Add(this.lblActualUser);
@@ -92,6 +98,34 @@
             this.grbList.TabIndex = 2;
             this.grbList.TabStop = false;
             this.grbList.Text = "Actual User";
+            // 
+            // lblActualGame
+            // 
+            this.lblActualGame.AutoSize = true;
+            this.lblActualGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActualGame.Location = new System.Drawing.Point(50, 52);
+            this.lblActualGame.Name = "lblActualGame";
+            this.lblActualGame.Size = new System.Drawing.Size(39, 17);
+            this.lblActualGame.TabIndex = 8;
+            this.lblActualGame.Text = "NaN";
+            // 
+            // lblActualGameL
+            // 
+            this.lblActualGameL.AutoSize = true;
+            this.lblActualGameL.Location = new System.Drawing.Point(10, 54);
+            this.lblActualGameL.Name = "lblActualGameL";
+            this.lblActualGameL.Size = new System.Drawing.Size(41, 13);
+            this.lblActualGameL.TabIndex = 7;
+            this.lblActualGameL.Text = "Game: ";
+            // 
+            // lblActualUserL
+            // 
+            this.lblActualUserL.AutoSize = true;
+            this.lblActualUserL.Location = new System.Drawing.Point(332, 56);
+            this.lblActualUserL.Name = "lblActualUserL";
+            this.lblActualUserL.Size = new System.Drawing.Size(32, 13);
+            this.lblActualUserL.TabIndex = 6;
+            this.lblActualUserL.Text = "User:";
             // 
             // btnAddGameFolder
             // 
@@ -119,11 +153,11 @@
             // 
             this.lblActualUser.AutoSize = true;
             this.lblActualUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActualUser.Location = new System.Drawing.Point(15, 52);
+            this.lblActualUser.Location = new System.Drawing.Point(370, 54);
             this.lblActualUser.Name = "lblActualUser";
-            this.lblActualUser.Size = new System.Drawing.Size(40, 17);
+            this.lblActualUser.Size = new System.Drawing.Size(39, 17);
             this.lblActualUser.TabIndex = 1;
-            this.lblActualUser.Text = "user";
+            this.lblActualUser.Text = "NaN";
             // 
             // btnSetUser
             // 
@@ -148,6 +182,7 @@
             this.trvGamesList.Size = new System.Drawing.Size(458, 222);
             this.trvGamesList.TabIndex = 0;
             this.trvGamesList.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.trvGamesList_AfterCheck);
+            this.trvGamesList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvGamesList_AfterSelect);
             // 
             // grbAddUser
             // 
@@ -322,6 +357,9 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.Label lblActualGame;
+        private System.Windows.Forms.Label lblActualGameL;
+        private System.Windows.Forms.Label lblActualUserL;
     }
 }
 
