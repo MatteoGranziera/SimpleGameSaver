@@ -117,6 +117,32 @@ namespace SimpleGameSaver
             
         }
 
+        public bool AddGame(String user, String game )
+        {
+            if (!InizializeFile())
+            {
+                return false;
+            }
+
+            XmlElement userEl = (XmlElement) rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user + "']");
+            if (rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user + "']/"+TAG_GAME+"[@"+PROPERTY_GAME_NAME+"='"+game+"']") == null)
+            {
+                XmlElement gameEl = doc.CreateElement(TAG_GAME);
+                gameEl.SetAttribute(PROPERTY_GAME_NAME, game);
+                userEl.AppendChild(gameEl);
+                LogSystem.Log("AddGame: game created");
+                return WriteChanges();
+            }
+            else
+            {
+                LogSystem.Log("AddGame: game already exists");
+                return false;
+            }
+
+
+            return true;
+        }
+
         public bool WriteGame(GameItem gi)
         {
             if (!InizializeFile())
