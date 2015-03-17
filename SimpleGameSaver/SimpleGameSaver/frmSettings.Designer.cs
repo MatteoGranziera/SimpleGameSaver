@@ -43,9 +43,9 @@
             this.btnAddUser = new System.Windows.Forms.Button();
             this.txtAddUser = new System.Windows.Forms.TextBox();
             this.grbAddGame = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstGameSugg = new System.Windows.Forms.ListBox();
             this.btnAddGame = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtAddGame = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -216,9 +216,9 @@
             // 
             this.grbAddGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.grbAddGame.Controls.Add(this.listBox1);
+            this.grbAddGame.Controls.Add(this.lstGameSugg);
             this.grbAddGame.Controls.Add(this.btnAddGame);
-            this.grbAddGame.Controls.Add(this.textBox1);
+            this.grbAddGame.Controls.Add(this.txtAddGame);
             this.grbAddGame.Location = new System.Drawing.Point(12, 116);
             this.grbAddGame.Name = "grbAddGame";
             this.grbAddGame.Size = new System.Drawing.Size(152, 249);
@@ -226,16 +226,16 @@
             this.grbAddGame.TabStop = false;
             this.grbAddGame.Text = "Add Game";
             // 
-            // listBox1
+            // lstGameSugg
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstGameSugg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 46);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(139, 160);
-            this.listBox1.TabIndex = 3;
+            this.lstGameSugg.FormattingEnabled = true;
+            this.lstGameSugg.Location = new System.Drawing.Point(6, 46);
+            this.lstGameSugg.Name = "lstGameSugg";
+            this.lstGameSugg.Size = new System.Drawing.Size(139, 160);
+            this.lstGameSugg.TabIndex = 3;
             // 
             // btnAddGame
             // 
@@ -246,13 +246,14 @@
             this.btnAddGame.TabIndex = 2;
             this.btnAddGame.Text = "Add Game";
             this.btnAddGame.UseVisualStyleBackColor = true;
+            this.btnAddGame.Click += new System.EventHandler(this.btnAddGame_Click);
             // 
-            // textBox1
+            // txtAddGame
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(139, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtAddGame.Location = new System.Drawing.Point(6, 19);
+            this.txtAddGame.Name = "txtAddGame";
+            this.txtAddGame.Size = new System.Drawing.Size(139, 20);
+            this.txtAddGame.TabIndex = 1;
             // 
             // menuStrip1
             // 
@@ -347,9 +348,9 @@
         private System.Windows.Forms.Button btnAddGameFolder;
         private System.Windows.Forms.Button btnAddConfigFolder;
         private System.Windows.Forms.GroupBox grbAddGame;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstGameSugg;
         private System.Windows.Forms.Button btnAddGame;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAddGame;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;

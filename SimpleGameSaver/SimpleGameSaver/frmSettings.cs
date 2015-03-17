@@ -199,5 +199,16 @@ namespace SimpleGameSaver
                 lblActualGame.Text = "";
             }
         }
+
+        private void btnAddGame_Click(object sender, EventArgs e)
+        {
+            if(user != null)
+            {
+                if (txtAddGame.Text != "")
+                {
+                    repoC.AddGame(user.Name, txtAddGame.Text);
+                }
+            }
+        }
     }
 }
