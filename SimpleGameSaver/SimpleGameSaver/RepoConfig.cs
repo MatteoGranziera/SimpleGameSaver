@@ -128,11 +128,15 @@ namespace SimpleGameSaver
             {
                 XmlElement user = (XmlElement)rootNode.SelectSingleNode(TAG_USER);
 
-                user.RemoveAll();
-                user.SetAttribute( PROPERTY_USER_NAME,gi.user);
-                XmlElement game = doc.CreateElement(TAG_GAME);
-                game.SetAttribute(PROPERTY_GAME_NAME, gi.name);
+                user.SetAttribute( PROPERTY_USER_NAME, gi.user);
+                XmlElement game = (XmlElement)user.SelectSingleNode(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.name + "']");
+                if (game == null)
+                {
+                    game = doc.CreateElement(TAG_GAME);
+                    game.SetAttribute(PROPERTY_GAME_NAME, gi.name);
+                }
                 user.AppendChild(game);
+
                 foreach (string path in gi.SaveFolders)
                 {
                     XmlElement save = doc.CreateElement(TAG_FOLDER);
