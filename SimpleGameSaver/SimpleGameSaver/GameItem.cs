@@ -9,11 +9,11 @@ namespace SimpleGameSaver
     public class GameItem
     {
         public string name { get; set; }
-        public string user { get; set; }
+        public UserItem user { get; set; }
         public List<string> SaveFolders { get; set; }
         public List<string> ConfigFolders { get; set; }
 
-        public GameItem(string name, string user)
+        public GameItem(string name, UserItem user)
         {
             this.name = name;
             this.user = user;

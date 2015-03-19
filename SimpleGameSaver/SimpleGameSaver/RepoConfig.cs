@@ -94,16 +94,16 @@ namespace SimpleGameSaver
             }
         }
 
-        public bool AddUser(string user)
+        public bool AddUser(UserItem user)
         {
             if (!InizializeFile())
             {
                 return false;
             }
-            if (rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user + "']") == null)
+            if (rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user.Name + "']") == null)
             {
                 XmlElement el = doc.CreateElement(TAG_USER);
-                el.SetAttribute(PROPERTY_USER_NAME, user);
+                el.SetAttribute(PROPERTY_USER_NAME, user.Name);
                 rootNode.AppendChild(el);
                 LogSystem.Log("AddUser: user created");
                 return WriteChanges();
@@ -117,18 +117,18 @@ namespace SimpleGameSaver
             
         }
 
-        public bool AddGame(String user, String game )
+        public bool AddGame(GameItem game )
         {
             if (!InizializeFile())
             {
                 return false;
             }
 
-            XmlElement userEl = (XmlElement) rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user + "']");
-            if (rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user + "']/"+TAG_GAME+"[@"+PROPERTY_GAME_NAME+"='"+game+"']") == null)
+            XmlElement userEl = (XmlElement) rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.user.Name + "']");
+            if (rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.user.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game + "']") == null)
             {
                 XmlElement gameEl = doc.CreateElement(TAG_GAME);
-                gameEl.SetAttribute(PROPERTY_GAME_NAME, game);
+                gameEl.SetAttribute(PROPERTY_GAME_NAME, game.name);
                 userEl.AppendChild(gameEl);
                 LogSystem.Log("AddGame: game created");
                 return WriteChanges();
@@ -152,7 +152,7 @@ namespace SimpleGameSaver
             {
                 XmlElement user = (XmlElement)rootNode.SelectSingleNode(TAG_USER);
 
-                user.SetAttribute( PROPERTY_USER_NAME, gi.user);
+                user.SetAttribute( PROPERTY_USER_NAME, gi.user.Name);
                 XmlElement game = (XmlElement)user.SelectSingleNode(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.name + "']");
                 if (game == null)
                 {
@@ -225,7 +225,7 @@ namespace SimpleGameSaver
             return users;
         }
 
-        public Dictionary<String, GameItem> GetGamesByUser(string user)
+        public Dictionary<String, GameItem> GetGamesByUser(UserItem user)
         {
             Dictionary<String, GameItem> games = new Dictionary<String, GameItem>();
 
@@ -235,7 +235,7 @@ namespace SimpleGameSaver
             }
             try
             {
-                String query = TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user + "']/" + TAG_GAME;
+                String query = TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + user.Name + "']/" + TAG_GAME;
                 foreach (XmlNode game in rootNode.SelectNodes(query))
                 {
                     GameItem item = new GameItem();

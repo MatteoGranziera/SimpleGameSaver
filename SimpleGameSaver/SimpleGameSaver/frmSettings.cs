@@ -60,7 +60,7 @@ namespace SimpleGameSaver
             if (txtAddUser.Text != "")
             {
                 //Load user
-                repoC.AddUser(txtAddUser.Text);
+                repoC.AddUser(new UserItem(txtAddUser.Text));
                 UpdateUsers();
                 txtAddUser.Text = "";
             }
@@ -86,7 +86,7 @@ namespace SimpleGameSaver
             {
                 trvGamesList.Nodes.Clear();
                 lblActualGame.Text = "";
-                user.Games = repoC.GetGamesByUser(user.Name);
+                user.Games = repoC.GetGamesByUser(user);
 
                 foreach (var game in user.Games)
                 {
@@ -206,7 +206,8 @@ namespace SimpleGameSaver
             {
                 if (txtAddGame.Text != "")
                 {
-                    repoC.AddGame(user.Name, txtAddGame.Text);
+                    GameItem gm = new GameItem(txtAddGame.Text, user);
+                    repoC.AddGame(gm);
                 }
             }
         }
