@@ -140,6 +140,33 @@ namespace SimpleGameSaver
 
         }
 
+        public bool RemoveGame(GameItem gi)
+        {
+            if (!InizializeFile())
+            {
+                return false;
+            }
+
+            try
+            {
+                XmlElement user = (XmlElement)rootNode.SelectSingleNode(TAG_USER+"[@"+PROPERTY_USER_NAME+"='"+gi.user.Name+"']");
+
+                user.SetAttribute( PROPERTY_USER_NAME, gi.user.Name);
+                XmlElement game = (XmlElement)user.SelectSingleNode(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.name + "']");
+                if (game != null)
+                {
+                    user.RemoveChild(game);
+                }
+                return WriteChanges();
+            }
+            catch (Exception e)
+            {
+                //Exception
+                LogSystem.LogError(e);
+                return false;
+            }
+        }
+
         public bool WriteGame(GameItem gi)
         {
             if (!InizializeFile())
