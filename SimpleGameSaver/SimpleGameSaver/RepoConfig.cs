@@ -187,13 +187,13 @@ namespace SimpleGameSaver
             }
         }
 
-        public bool WriteGames(List<GameItem> gis)
+        public bool WriteGames(Dictionary<String, GameItem> gis)
         {
             bool ok = true;
             foreach (var gi in gis)
             {
                 if(ok)
-                    ok = WriteGame(gi);
+                    ok = WriteGame(gi.Value);
             }
 
             return ok;
