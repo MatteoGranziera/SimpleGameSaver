@@ -53,6 +53,8 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ckbDefaultFolders = new System.Windows.Forms.CheckBox();
+            this.btnRemoveSelected = new System.Windows.Forms.Button();
             this.grbList.SuspendLayout();
             this.grbAddUser.SuspendLayout();
             this.grbAddGame.SuspendLayout();
@@ -82,6 +84,7 @@
             this.grbList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbList.Controls.Add(this.btnRemoveSelected);
             this.grbList.Controls.Add(this.lblActualGame);
             this.grbList.Controls.Add(this.lblActualGameL);
             this.grbList.Controls.Add(this.lblActualUserL);
@@ -94,7 +97,7 @@
             this.grbList.Controls.Add(this.cmbUsers);
             this.grbList.Location = new System.Drawing.Point(170, 27);
             this.grbList.Name = "grbList";
-            this.grbList.Size = new System.Drawing.Size(481, 338);
+            this.grbList.Size = new System.Drawing.Size(481, 341);
             this.grbList.TabIndex = 2;
             this.grbList.TabStop = false;
             this.grbList.Text = "Actual User";
@@ -130,7 +133,7 @@
             // btnAddGameFolder
             // 
             this.btnAddGameFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddGameFolder.Location = new System.Drawing.Point(10, 311);
+            this.btnAddGameFolder.Location = new System.Drawing.Point(10, 314);
             this.btnAddGameFolder.Name = "btnAddGameFolder";
             this.btnAddGameFolder.Size = new System.Drawing.Size(108, 27);
             this.btnAddGameFolder.TabIndex = 5;
@@ -141,7 +144,7 @@
             // btnAddConfigFolder
             // 
             this.btnAddConfigFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddConfigFolder.Location = new System.Drawing.Point(124, 311);
+            this.btnAddConfigFolder.Location = new System.Drawing.Point(124, 314);
             this.btnAddConfigFolder.Name = "btnAddConfigFolder";
             this.btnAddConfigFolder.Size = new System.Drawing.Size(104, 27);
             this.btnAddConfigFolder.TabIndex = 4;
@@ -179,7 +182,7 @@
             this.trvGamesList.ItemHeight = 18;
             this.trvGamesList.Location = new System.Drawing.Point(10, 77);
             this.trvGamesList.Name = "trvGamesList";
-            this.trvGamesList.Size = new System.Drawing.Size(458, 222);
+            this.trvGamesList.Size = new System.Drawing.Size(458, 225);
             this.trvGamesList.TabIndex = 0;
             this.trvGamesList.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.trvGamesList_AfterCheck);
             this.trvGamesList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvGamesList_AfterSelect);
@@ -216,12 +219,13 @@
             // 
             this.grbAddGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.grbAddGame.Controls.Add(this.ckbDefaultFolders);
             this.grbAddGame.Controls.Add(this.lstGameSugg);
             this.grbAddGame.Controls.Add(this.btnAddGame);
             this.grbAddGame.Controls.Add(this.txtAddGame);
             this.grbAddGame.Location = new System.Drawing.Point(12, 116);
             this.grbAddGame.Name = "grbAddGame";
-            this.grbAddGame.Size = new System.Drawing.Size(152, 249);
+            this.grbAddGame.Size = new System.Drawing.Size(152, 252);
             this.grbAddGame.TabIndex = 5;
             this.grbAddGame.TabStop = false;
             this.grbAddGame.Text = "Add Game";
@@ -234,13 +238,13 @@
             this.lstGameSugg.FormattingEnabled = true;
             this.lstGameSugg.Location = new System.Drawing.Point(6, 46);
             this.lstGameSugg.Name = "lstGameSugg";
-            this.lstGameSugg.Size = new System.Drawing.Size(139, 160);
+            this.lstGameSugg.Size = new System.Drawing.Size(139, 134);
             this.lstGameSugg.TabIndex = 3;
             // 
             // btnAddGame
             // 
             this.btnAddGame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddGame.Location = new System.Drawing.Point(70, 220);
+            this.btnAddGame.Location = new System.Drawing.Point(70, 223);
             this.btnAddGame.Name = "btnAddGame";
             this.btnAddGame.Size = new System.Drawing.Size(75, 23);
             this.btnAddGame.TabIndex = 2;
@@ -309,11 +313,32 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // ckbDefaultFolders
+            // 
+            this.ckbDefaultFolders.AutoSize = true;
+            this.ckbDefaultFolders.Location = new System.Drawing.Point(6, 192);
+            this.ckbDefaultFolders.Name = "ckbDefaultFolders";
+            this.ckbDefaultFolders.Size = new System.Drawing.Size(109, 17);
+            this.ckbDefaultFolders.TabIndex = 4;
+            this.ckbDefaultFolders.Text = "Add default folder";
+            this.ckbDefaultFolders.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveSelected
+            // 
+            this.btnRemoveSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveSelected.Location = new System.Drawing.Point(361, 314);
+            this.btnRemoveSelected.Name = "btnRemoveSelected";
+            this.btnRemoveSelected.Size = new System.Drawing.Size(107, 27);
+            this.btnRemoveSelected.TabIndex = 9;
+            this.btnRemoveSelected.Text = "Remove selected";
+            this.btnRemoveSelected.UseVisualStyleBackColor = true;
+            this.btnRemoveSelected.Click += new System.EventHandler(this.btnRemoveSelected_Click);
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 372);
+            this.ClientSize = new System.Drawing.Size(663, 375);
             this.Controls.Add(this.grbAddGame);
             this.Controls.Add(this.grbAddUser);
             this.Controls.Add(this.grbList);
@@ -361,6 +386,8 @@
         private System.Windows.Forms.Label lblActualGame;
         private System.Windows.Forms.Label lblActualGameL;
         private System.Windows.Forms.Label lblActualUserL;
+        private System.Windows.Forms.Button btnRemoveSelected;
+        private System.Windows.Forms.CheckBox ckbDefaultFolders;
     }
 }
 

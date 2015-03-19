@@ -210,5 +210,47 @@ namespace SimpleGameSaver
                 }
             }
         }
+
+        private void btnRemoveSelected_Click(object sender, EventArgs e)
+        {
+            if (trvGamesList.SelectedNode != null)
+            {
+
+                if(trvGamesList.SelectedNode.Nodes.Count == 0)
+                {
+                    String game = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
+                    GameItem gm = user.Games[game];
+                    String path = trvGamesList.SelectedNode.Text;
+
+                    if (gm.ConfigFolders.Contains(path))
+                    {
+                        gm.ConfigFolders.Remove(path);
+                    }
+                    else if (gm.SaveFolders.Contains(path))
+                    {
+                        gm.SaveFolders.Remove(path);
+                    }
+
+                }
+                else if (trvGamesList.SelectedNode.Text == "Saves")
+                {
+                    String game = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
+                    GameItem gm = user.Games[game];
+                    gm.SaveFolders.Clear();
+                }
+                else if (trvGamesList.SelectedNode.Text == "Configurations")
+                {
+                    String game = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
+                    GameItem gm = user.Games[game];
+                    gm.ConfigFolders.Clear();
+                }
+                else if (trvGamesList.SelectedNode.FullPath.IndexOf('\\') == -1)
+                {
+                    user.Games.Remove(trvGamesList.SelectedNode.Text);
+                }
+                repoC.WriteGames(user.Games);
+                UpdateGames();
+            }
+        }
     }
 }
