@@ -17,7 +17,6 @@ namespace SimpleGameSaver
         private String PROPERTY_USER_NAME = "name";
         private String PROPERTY_GAME_NAME = "name";
         private String PROPERTY_FOLDER_TYPE = "type";
-        private String PROPERTY_FOLDER_PATH = "path";
         private String PROPERTY_FOLDER_TYPE_CONFIG = "configFolder";
         private String PROPERTY_FOLDER_TYPE_SAVE = "saveFolder";
 
