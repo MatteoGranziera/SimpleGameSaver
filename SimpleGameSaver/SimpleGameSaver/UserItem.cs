@@ -9,7 +9,7 @@ namespace SimpleGameSaver
     public class UserItem
     {
         public String Name { get; set; }
-        public List<GameItem> Games { get; set; }
+        public Dictionary<String, GameItem> Games { get; set; }
         public UserItem()
         {
 

@@ -88,10 +88,10 @@ namespace SimpleGameSaver
                 lblActualGame.Text = "";
                 user.Games = repoC.GetGamesByUser(user.Name);
 
-                foreach (GameItem game in user.Games)
+                foreach (var game in user.Games)
                 {
                     //Load game on TreeView
-                    TreeNode gameNode = new TreeNode(game.name);
+                    TreeNode gameNode = new TreeNode(game.Value.name);
                     gameNode.ImageIndex = JOYSTICK_IMGE_IDEX;
                     gameNode.SelectedImageIndex = JOYSTICK_IMGE_IDEX;
 
@@ -101,7 +101,7 @@ namespace SimpleGameSaver
                     savesNode.SelectedImageIndex = SAVE_IMGE_IDEX;
 
                     //Load saves of game
-                    foreach (String save in game.SaveFolders)
+                    foreach (String save in game.Value.SaveFolders)
                     {
                         TreeNode saveNode = new TreeNode(save);
                         saveNode.ImageIndex = FOLDERSAVE_IMGE_IDEX;
@@ -117,7 +117,7 @@ namespace SimpleGameSaver
                     configsNode.SelectedImageIndex = CONFIG_IMGE_IDEX;
 
                     //Load configs of game
-                    foreach (String save in game.ConfigFolders)
+                    foreach (String save in game.Value.ConfigFolders)
                     {
                         TreeNode configNode = new TreeNode(save);
                         configNode.ImageIndex = FOLDERCONFIG_IMGE_IDEX;
@@ -156,16 +156,16 @@ namespace SimpleGameSaver
         {
             if (user != null && user.Name != "" && lblActualGame.Text != "")
             {
-                GameItem game = user.Games.Where( g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.name).ToList()[0];
+                var game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.Value.name).ToList()[0];
 
                 AddFolderDialog addF = new AddFolderDialog();
                 addF.ShowDialog();
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.SaveFolders.Add(addF.result);
+                    game.Value.SaveFolders.Add(addF.result);
                 }
-                repoC.WriteGame(game);
+                repoC.WriteGame(game.Value);
                 UpdateGames();
             }
         }
@@ -174,16 +174,16 @@ namespace SimpleGameSaver
         {
             if (user != null && user.Name != "" && lblActualGame.Text != "")
             {
-                GameItem game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.name).ToList()[0];
+                var game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.Value.name).ToList()[0];
 
                 AddFolderDialog addF = new AddFolderDialog();
                 addF.ShowDialog();
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.ConfigFolders.Add(addF.result);
+                    game.Value.ConfigFolders.Add(addF.result);
                 }
-                repoC.WriteGame(game);
+                repoC.WriteGame(game.Value);
                 UpdateGames();
             }
         }

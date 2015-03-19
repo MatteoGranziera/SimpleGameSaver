@@ -225,9 +225,9 @@ namespace SimpleGameSaver
             return users;
         }
 
-        public List<GameItem> GetGamesByUser(string user)
+        public Dictionary<String, GameItem> GetGamesByUser(string user)
         {
-            List<GameItem> games = new List<GameItem>();
+            Dictionary<String, GameItem> games = new Dictionary<String, GameItem>();
 
             if (!InizializeFile())
             {
@@ -258,7 +258,7 @@ namespace SimpleGameSaver
                         item.ConfigFolders.Add(config.InnerText);
                     }
 
-                    games.Add(item);
+                    games.Add(item.name, item);
                     
                 }
             }
