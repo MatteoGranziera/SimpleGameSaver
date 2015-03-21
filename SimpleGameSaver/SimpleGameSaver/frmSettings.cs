@@ -246,11 +246,11 @@ namespace SimpleGameSaver
                     GameItem gm = user.Games[game];
                     gm.ConfigFolders.Clear();
                 }
-                else if (trvGamesList.SelectedNode.FullPath.IndexOf('\\') == -1)
+                else if(trvGamesList.SelectedNode.FullPath.IndexOf('\\') == -1)
                 {
-                    user.Games.Remove(trvGamesList.SelectedNode.Text);
+                    repoC.RemoveGame(new GameItem(trvGamesList.SelectedNode.Text, user));
                 }
-                repoC.WriteGames(user.Games);
+
                 UpdateGames();
             }
         }
