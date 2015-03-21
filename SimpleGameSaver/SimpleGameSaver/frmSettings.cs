@@ -253,6 +253,16 @@ namespace SimpleGameSaver
 
                 UpdateGames();
             }
+
+        }
+        private TreeNode GetRootParent(TreeNode node)
+        {
+            TreeNode parentNode = node;
+            while (!(parentNode.Parent == null))
+            {
+                parentNode = parentNode.Parent;
+            }
+            return parentNode;
         }
     }
 }
