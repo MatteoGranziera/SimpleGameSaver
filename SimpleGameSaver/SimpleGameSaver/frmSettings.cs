@@ -128,6 +128,7 @@ namespace SimpleGameSaver
                     gameNode.Nodes.Add(configsNode);
 
                     trvGamesList.Nodes.Add(gameNode);
+                    trvGamesList.ExpandAll();
                 }
             }
             
