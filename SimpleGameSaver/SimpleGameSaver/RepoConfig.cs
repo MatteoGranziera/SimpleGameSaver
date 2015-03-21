@@ -11,14 +11,14 @@ namespace SimpleGameSaver
 {
     public class RepoConfig
     {
-        private String TAG_USER = "User";
-        private String TAG_GAME = "Game";
-        private String TAG_FOLDER = "Folder";
-        private String PROPERTY_USER_NAME = "name";
-        private String PROPERTY_GAME_NAME = "name";
-        private String PROPERTY_FOLDER_TYPE = "type";
-        private String PROPERTY_FOLDER_TYPE_CONFIG = "configFolder";
-        private String PROPERTY_FOLDER_TYPE_SAVE = "saveFolder";
+        public const String TAG_USER = "User";
+        public const String TAG_GAME = "Game";
+        public const String TAG_FOLDER = "Folder";
+        public const String PROPERTY_USER_NAME = "name";
+        public const String PROPERTY_GAME_NAME = "name";
+        public const String PROPERTY_FOLDER_TYPE = "type";
+        public const String PROPERTY_FOLDER_TYPE_CONFIG = "configFolder";
+        public const String PROPERTY_FOLDER_TYPE_SAVE = "saveFolder";
 
         private XmlDocument doc = null;
         private XmlNode rootNode = null;
