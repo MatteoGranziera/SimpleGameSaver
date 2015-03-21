@@ -140,6 +140,34 @@ namespace SimpleGameSaver
 
         }
 
+        public bool RemoveFolder(GameItem gi, String folder, String type)
+        {
+            if (!InizializeFile())
+            {
+                return false;
+            }
+
+            try
+            {
+                XmlElement game = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + gi.user.Name + "']/" +TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.name + "']");
+
+                LogSystem.Log(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.name + "']"+"/"+TAG_FOLDER+"[@"+PROPERTY_FOLDER_TYPE+"='"+type+"' and text() = '"+folder+"']");
+                XmlElement folderEl = (XmlElement)game.SelectSingleNode(
+                    TAG_FOLDER+"[@"+PROPERTY_FOLDER_TYPE+"='"+type+"' and text() = '"+folder+"']");
+                if (folderEl != null)
+                {
+                    game.RemoveChild(folderEl);
+                }
+                return WriteChanges();
+            }
+            catch (Exception e)
+            {
+                //Exception
+                LogSystem.LogError(e);
+                return false;
+            }
+        }
+
         public bool RemoveGame(GameItem gi)
         {
             if (!InizializeFile())
