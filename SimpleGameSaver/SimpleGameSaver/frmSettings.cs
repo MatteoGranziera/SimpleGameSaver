@@ -225,11 +225,11 @@ namespace SimpleGameSaver
 
                     if (gm.ConfigFolders.Contains(path))
                     {
-                        gm.ConfigFolders.Remove(path);
+                        repoC.RemoveFolder(gm, path, RepoConfig.PROPERTY_FOLDER_TYPE_CONFIG);
                     }
                     else if (gm.SaveFolders.Contains(path))
                     {
-                        gm.SaveFolders.Remove(path);
+                        repoC.RemoveFolder(gm, path, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
                     }
 
                 }
