@@ -193,7 +193,7 @@ namespace SimpleGameSaver
         {
             if(e.Node != null)
             {
-                lblActualGame.Text = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
+                lblActualGame.Text = GetRootParent(trvGamesList.SelectedNode).Text;
             }
             else
             {
