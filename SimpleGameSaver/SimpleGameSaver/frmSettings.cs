@@ -209,6 +209,7 @@ namespace SimpleGameSaver
                 {
                     GameItem gm = new GameItem(txtAddGame.Text, user);
                     repoC.AddGame(gm);
+                    UpdateGames();
                 }
             }
         }
