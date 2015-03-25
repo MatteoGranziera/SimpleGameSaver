@@ -249,6 +249,28 @@ namespace SimpleGameSaver
             }
 
             return ok;
+
+        public bool AddFolder(GameItem game, String folder, String type){
+            if (!InizializeFile())
+            {
+                return false;
+            }
+
+            XmlElement gameEl = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.user.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game + "']");
+            if (gameEl.SelectSingleNode(TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + type + "' and text() = '" + folder + "']") == null)
+            {
+                XmlElement folderEl = doc.CreateElement(TAG_FOLDER);
+                folderEl.SetAttribute(PROPERTY_FOLDER_TYPE, type);
+                folderEl.InnerText = folder;
+                gameEl.AppendChild(folderEl);
+                LogSystem.Log("AddFolder: folder created");
+                return WriteChanges();
+            }
+            else
+            {
+                LogSystem.Log("AddFolder: folder already exists");
+                return false;
+            }
         }
 
         public List<String> GetUsers()
