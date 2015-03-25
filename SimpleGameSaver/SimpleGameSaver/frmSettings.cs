@@ -238,13 +238,19 @@ namespace SimpleGameSaver
                 {
                     String game = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
                     GameItem gm = user.Games[game];
-                    gm.SaveFolders.Clear();
+                    foreach (String f in gm.SaveFolders)
+                    {
+                        repoC.RemoveFolder(gm, f, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
+                    }
                 }
                 else if (trvGamesList.SelectedNode.Text == "Configurations")
                 {
                     String game = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
                     GameItem gm = user.Games[game];
-                    gm.ConfigFolders.Clear();
+                    foreach (String f in gm.ConfigFolders)
+                    {
+                        repoC.RemoveFolder(gm, f, RepoConfig.PROPERTY_FOLDER_TYPE_CONFIG);
+                    }
                 }
                 else if(trvGamesList.SelectedNode.FullPath.IndexOf('\\') == -1)
                 {
