@@ -165,9 +165,9 @@ namespace SimpleGameSaver
                 if (addF.DialogResult == DialogResult.OK)
                 {
                     game.Value.SaveFolders.Add(addF.result);
+                    repoC.AddFolder(game.Value, addF.result, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
+                    UpdateGames();
                 }
-                repoC.WriteGame(game.Value);
-                UpdateGames();
             }
         }
 
@@ -183,9 +183,9 @@ namespace SimpleGameSaver
                 if (addF.DialogResult == DialogResult.OK)
                 {
                     game.Value.ConfigFolders.Add(addF.result);
+                    repoC.AddFolder(game.Value, addF.result, RepoConfig.PROPERTY_FOLDER_TYPE_CONFIG);
+                    UpdateGames();
                 }
-                repoC.WriteGame(game.Value);
-                UpdateGames();
             }
         }
 
