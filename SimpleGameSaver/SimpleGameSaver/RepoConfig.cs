@@ -193,63 +193,6 @@ namespace SimpleGameSaver
             }
         }
 
-        public bool WriteGame(GameItem gi)
-        {
-            if (!InizializeFile())
-            {
-                return false;
-            }
-
-            try
-            {
-                XmlElement user = (XmlElement)rootNode.SelectSingleNode(TAG_USER);
-
-                user.SetAttribute( PROPERTY_USER_NAME, gi.user.Name);
-                XmlElement game = (XmlElement)user.SelectSingleNode(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.name + "']");
-                if (game == null)
-                {
-                    game = doc.CreateElement(TAG_GAME);
-                    game.SetAttribute(PROPERTY_GAME_NAME, gi.name);
-                }
-                user.AppendChild(game);
-
-                foreach (string path in gi.SaveFolders)
-                {
-                    XmlElement save = doc.CreateElement(TAG_FOLDER);
-                    save.SetAttribute(PROPERTY_FOLDER_TYPE, PROPERTY_FOLDER_TYPE_SAVE);
-                    save.InnerText = path;
-                    game.AppendChild(save);
-                }
-
-                foreach (string path in gi.ConfigFolders)
-                {
-                    XmlElement config = doc.CreateElement(TAG_FOLDER);
-                    config.SetAttribute(PROPERTY_FOLDER_TYPE, PROPERTY_FOLDER_TYPE_CONFIG);
-                    config.InnerText = path;
-                    game.AppendChild(config);
-                }
-
-                return WriteChanges();
-            }
-            catch (Exception e)
-            {
-                //Exception
-                LogSystem.LogError(e);
-                return false;
-            }
-        }
-
-        public bool WriteGames(Dictionary<String, GameItem> gis)
-        {
-            bool ok = true;
-            foreach (var gi in gis)
-            {
-                if(ok)
-                    ok = WriteGame(gi.Value);
-            }
-
-            return ok;
-
         public bool AddFolder(GameItem game, String folder, String type){
             if (!InizializeFile())
             {
