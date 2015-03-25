@@ -199,7 +199,7 @@ namespace SimpleGameSaver
                 return false;
             }
 
-            XmlElement gameEl = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.user.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game + "']");
+            XmlElement gameEl = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.user.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game.name+ "']");
             if (gameEl.SelectSingleNode(TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + type + "' and text() = '" + folder + "']") == null)
             {
                 XmlElement folderEl = doc.CreateElement(TAG_FOLDER);
