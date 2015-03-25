@@ -124,7 +124,7 @@ namespace SimpleGameSaver
             }
 
             XmlElement userEl = (XmlElement) rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.user.Name + "']");
-            if (rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.user.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game + "']") == null)
+            if (userEl.SelectSingleNode(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game + "']") == null)
             {
                 XmlElement gameEl = doc.CreateElement(TAG_GAME);
                 gameEl.SetAttribute(PROPERTY_GAME_NAME, game.name);
