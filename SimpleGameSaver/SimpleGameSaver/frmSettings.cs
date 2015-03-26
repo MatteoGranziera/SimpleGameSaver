@@ -225,14 +225,14 @@ namespace SimpleGameSaver
                     GameItem gm = user.Games[game];
                     String path = trvGamesList.SelectedNode.Text;
 
-                    /*if (gm.ConfigFolders.Contains(path))
+                    if (gm.ConfigFolders.Keys.Contains(path))
                     {
-                        repoC.RemoveFolder(gm, path, Folder.FolderType.Config);
+                        repoC.RemoveFolder(gm, gm.ConfigFolders[path]);
                     }
-                    else if (gm.SaveFolders.Contains(path))
+                    else if (gm.SaveFolders.Keys.Contains(path))
                     {
-                        repoC.RemoveFolder(gm, path, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
-                    }*/
+                        repoC.RemoveFolder(gm, gm.SaveFolders[path]);
+                    }
 
                 }
                 else if (trvGamesList.SelectedNode.Text == "Saves")
@@ -241,17 +241,17 @@ namespace SimpleGameSaver
                     GameItem gm = user.Games[game];
                     foreach (FolderItem f in gm.SaveFolders.Values)
                     {
-                       // repoC.RemoveFolder(gm, f, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
+                        repoC.RemoveFolder(gm, f);
                     }
                 }
                 else if (trvGamesList.SelectedNode.Text == "Configurations")
                 {
                     String game = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
                     GameItem gm = user.Games[game];
-                    /*foreach (String f in gm.ConfigFolders)
+                    foreach (FolderItem f in gm.ConfigFolders.Values)
                     {
-                        repoC.RemoveFolder(gm, f, RepoConfig.PROPERTY_FOLDER_TYPE_CONFIG);
-                    }*/
+                        repoC.RemoveFolder(gm, f);
+                    }
                 }
                 else if(trvGamesList.SelectedNode.FullPath.IndexOf('\\') == -1)
                 {
