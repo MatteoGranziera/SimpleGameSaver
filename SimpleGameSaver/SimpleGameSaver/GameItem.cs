@@ -8,15 +8,15 @@ namespace SimpleGameSaver
 {
     public class GameItem
     {
-        public string name { get; set; }
-        public UserItem user { get; set; }
-        public List<string> SaveFolders { get; set; }
-        public List<string> ConfigFolders { get; set; }
+        public string Name { get; set; }
+        public UserItem User { get; set; }
+        public List<Folder> SaveFolders { get; set; }
+        public List<Folder> ConfigFolders { get; set; }
 
         public GameItem(string name, UserItem user)
         {
-            this.name = name;
-            this.user = user;
+            this.Name = name;
+            this.User = user;
         }
 
         public GameItem()

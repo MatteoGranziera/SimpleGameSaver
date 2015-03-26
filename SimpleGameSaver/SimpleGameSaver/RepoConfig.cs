@@ -17,8 +17,10 @@ namespace SimpleGameSaver
         public const String PROPERTY_USER_NAME = "name";
         public const String PROPERTY_GAME_NAME = "name";
         public const String PROPERTY_FOLDER_TYPE = "type";
-        public const String PROPERTY_FOLDER_TYPE_CONFIG = "configFolder";
-        public const String PROPERTY_FOLDER_TYPE_SAVE = "saveFolder";
+        /*public const String PROPERTY_FOLDER_TYPE_CONFIG = "configFolder";
+        public const String PROPERTY_FOLDER_TYPE_SAVE = "saveFolder";*/
+        public const String PROPERTY_FOLDER_DESTINATION = "destFolder";
+        public const String PROPERTY_FOLDER_ENABLED = "enaFolder";
 
         private XmlDocument doc = null;
         private XmlNode rootNode = null;
@@ -123,11 +125,11 @@ namespace SimpleGameSaver
                 return false;
             }
 
-            XmlElement userEl = (XmlElement) rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.user.Name + "']");
+            XmlElement userEl = (XmlElement) rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.User.Name + "']");
             if (userEl.SelectSingleNode(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game + "']") == null)
             {
                 XmlElement gameEl = doc.CreateElement(TAG_GAME);
-                gameEl.SetAttribute(PROPERTY_GAME_NAME, game.name);
+                gameEl.SetAttribute(PROPERTY_GAME_NAME, game.Name);
                 userEl.AppendChild(gameEl);
                 LogSystem.Log("AddGame: game created");
                 return WriteChanges();
@@ -140,7 +142,7 @@ namespace SimpleGameSaver
 
         }
 
-        public bool RemoveFolder(GameItem gi, String folder, String type)
+        public bool RemoveFolder(GameItem gi, Folder folder)
         {
             if (!InizializeFile())
             {
@@ -149,11 +151,11 @@ namespace SimpleGameSaver
 
             try
             {
-                XmlElement game = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + gi.user.Name + "']/" +TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.name + "']");
+                XmlElement game = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + gi.User.Name + "']/" +TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.Name + "']");
 
-                LogSystem.Log(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.name + "']"+"/"+TAG_FOLDER+"[@"+PROPERTY_FOLDER_TYPE+"='"+type+"' and text() = '"+folder+"']");
+                LogSystem.Log(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.Name + "']"+"/"+TAG_FOLDER+"[@"+PROPERTY_FOLDER_TYPE+"='"+folder.Type+"' and text() = '"+folder.Name+"']");
                 XmlElement folderEl = (XmlElement)game.SelectSingleNode(
-                    TAG_FOLDER+"[@"+PROPERTY_FOLDER_TYPE+"='"+type+"' and text() = '"+folder+"']");
+                    TAG_FOLDER+"[@"+PROPERTY_FOLDER_TYPE+"='"+folder.Type+"' and text() = '"+folder.Name+"']");
                 if (folderEl != null)
                 {
                     game.RemoveChild(folderEl);
@@ -177,8 +179,8 @@ namespace SimpleGameSaver
 
             try
             {
-                XmlElement user = (XmlElement)rootNode.SelectSingleNode(TAG_USER+"[@"+PROPERTY_USER_NAME+"='"+gi.user.Name+"']");
-                XmlElement game = (XmlElement)user.SelectSingleNode(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.name + "']");
+                XmlElement user = (XmlElement)rootNode.SelectSingleNode(TAG_USER+"[@"+PROPERTY_USER_NAME+"='"+gi.User.Name+"']");
+                XmlElement game = (XmlElement)user.SelectSingleNode(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.Name + "']");
                 if (game != null)
                 {
                     user.RemoveChild(game);
@@ -193,18 +195,22 @@ namespace SimpleGameSaver
             }
         }
 
-        public bool AddFolder(GameItem game, String folder, String type){
+        public bool AddFolder(GameItem game, Folder folder){
             if (!InizializeFile())
             {
                 return false;
             }
 
-            XmlElement gameEl = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.user.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game.name+ "']");
-            if (gameEl.SelectSingleNode(TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + type + "' and text() = '" + folder + "']") == null)
+            XmlElement gameEl = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.User.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game.Name+ "']");
+            if (gameEl.SelectSingleNode(TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + folder.Type + "' and text() = '" + folder + "']") == null)
             {
                 XmlElement folderEl = doc.CreateElement(TAG_FOLDER);
-                folderEl.SetAttribute(PROPERTY_FOLDER_TYPE, type);
-                folderEl.InnerText = folder;
+
+                folderEl.SetAttribute(PROPERTY_FOLDER_TYPE, folder.Type);
+                folderEl.SetAttribute(PROPERTY_FOLDER_DESTINATION, folder.DestinationName);
+                folderEl.SetAttribute(PROPERTY_FOLDER_ENABLED, folder.Enabled.ToString());
+
+                folderEl.InnerText = folder.Name;
                 gameEl.AppendChild(folderEl);
                 LogSystem.Log("AddFolder: folder created");
                 return WriteChanges();
@@ -257,25 +263,22 @@ namespace SimpleGameSaver
                 {
                     GameItem item = new GameItem();
 
-                    item.name = game.Attributes[PROPERTY_GAME_NAME].Value;
-                    item.user = user;
+                    item.Name = game.Attributes[PROPERTY_GAME_NAME].Value;
+                    item.User = user;
 
-                    query = TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + PROPERTY_FOLDER_TYPE_SAVE + "']";
-                    item.SaveFolders = new List<string>();
+                    query = TAG_FOLDER;
+                    item.SaveFolders = new List<Folder>();
+                    item.ConfigFolders = new List<Folder>();
                     
-                    foreach (XmlNode save in game.SelectNodes(query))
+                    foreach (XmlNode folder in game.SelectNodes(query))
                     {
-                        item.SaveFolders.Add(save.InnerText);
+                        if(folder.Attributes[PROPERTY_FOLDER_TYPE].Value == Folder.FolderType.Save)
+                            item.SaveFolders.Add(new Folder(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,Folder.FolderType.Save, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
+                        else if (folder.Attributes[PROPERTY_FOLDER_TYPE].Value == Folder.FolderType.Config)
+                            item.ConfigFolders.Add(new Folder(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,Folder.FolderType.Config, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
                     }
 
-                    query = TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + PROPERTY_FOLDER_TYPE_CONFIG + "']";
-                    item.ConfigFolders = new List<string>();
-                    foreach (XmlNode config in game.SelectNodes(query))
-                    {
-                        item.ConfigFolders.Add(config.InnerText);
-                    }
-
-                    games.Add(item.name, item);
+                    games.Add(item.Name, item);
                     
                 }
             }

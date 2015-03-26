@@ -91,7 +91,7 @@ namespace SimpleGameSaver
                 foreach (var game in user.Games)
                 {
                     //Load game on TreeView
-                    TreeNode gameNode = new TreeNode(game.Value.name);
+                    TreeNode gameNode = new TreeNode(game.Value.Name);
                     gameNode.ImageIndex = JOYSTICK_IMGE_IDEX;
                     gameNode.SelectedImageIndex = JOYSTICK_IMGE_IDEX;
 
@@ -101,9 +101,9 @@ namespace SimpleGameSaver
                     savesNode.SelectedImageIndex = SAVE_IMGE_IDEX;
 
                     //Load saves of game
-                    foreach (String save in game.Value.SaveFolders)
+                    foreach (Folder save in game.Value.SaveFolders)
                     {
-                        TreeNode saveNode = new TreeNode(save);
+                        TreeNode saveNode = new TreeNode(save.Name);
                         saveNode.ImageIndex = FOLDERSAVE_IMGE_IDEX;
                         saveNode.SelectedImageIndex = FOLDERSAVE_IMGE_IDEX;
                         savesNode.Nodes.Add(saveNode);
@@ -117,9 +117,9 @@ namespace SimpleGameSaver
                     configsNode.SelectedImageIndex = CONFIG_IMGE_IDEX;
 
                     //Load configs of game
-                    foreach (String save in game.Value.ConfigFolders)
+                    foreach (Folder save in game.Value.ConfigFolders)
                     {
-                        TreeNode configNode = new TreeNode(save);
+                        TreeNode configNode = new TreeNode(save.Name);
                         configNode.ImageIndex = FOLDERCONFIG_IMGE_IDEX;
                         configNode.SelectedImageIndex = FOLDERCONFIG_IMGE_IDEX;
                         configsNode.Nodes.Add(configNode);
@@ -157,15 +157,15 @@ namespace SimpleGameSaver
         {
             if (user != null && user.Name != "" && lblActualGame.Text != "")
             {
-                var game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.Value.name).ToList()[0];
+                var game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.Value.Name).ToList()[0];
 
                 AddFolderDialog addF = new AddFolderDialog();
                 addF.ShowDialog();
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.Value.SaveFolders.Add(addF.result);
-                    repoC.AddFolder(game.Value, addF.result, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
+                    game.Value.SaveFolders.Add(new Folder(addF.result, addF.result, Folder.FolderType.Save));
+                    repoC.AddFolder(game.Value, new Folder(addF.result, addF.result, Folder.FolderType.Save));
                     UpdateGames();
                 }
             }
@@ -175,15 +175,15 @@ namespace SimpleGameSaver
         {
             if (user != null && user.Name != "" && lblActualGame.Text != "")
             {
-                var game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.Value.name).ToList()[0];
+                var game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.Value.Name).ToList()[0];
 
                 AddFolderDialog addF = new AddFolderDialog();
                 addF.ShowDialog();
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.Value.ConfigFolders.Add(addF.result);
-                    repoC.AddFolder(game.Value, addF.result, RepoConfig.PROPERTY_FOLDER_TYPE_CONFIG);
+                    game.Value.ConfigFolders.Add(new Folder(addF.result, addF.result, Folder.FolderType.Config));
+                    repoC.AddFolder(game.Value, new Folder(addF.result, addF.result, Folder.FolderType.Config));
                     UpdateGames();
                 }
             }
@@ -225,33 +225,33 @@ namespace SimpleGameSaver
                     GameItem gm = user.Games[game];
                     String path = trvGamesList.SelectedNode.Text;
 
-                    if (gm.ConfigFolders.Contains(path))
+                    /*if (gm.ConfigFolders.Contains(path))
                     {
-                        repoC.RemoveFolder(gm, path, RepoConfig.PROPERTY_FOLDER_TYPE_CONFIG);
+                        repoC.RemoveFolder(gm, path, Folder.FolderType.Config);
                     }
                     else if (gm.SaveFolders.Contains(path))
                     {
                         repoC.RemoveFolder(gm, path, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
-                    }
+                    }*/
 
                 }
                 else if (trvGamesList.SelectedNode.Text == "Saves")
                 {
                     String game = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
                     GameItem gm = user.Games[game];
-                    foreach (String f in gm.SaveFolders)
+                    foreach (Folder f in gm.SaveFolders)
                     {
-                        repoC.RemoveFolder(gm, f, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
+                       // repoC.RemoveFolder(gm, f, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
                     }
                 }
                 else if (trvGamesList.SelectedNode.Text == "Configurations")
                 {
                     String game = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
                     GameItem gm = user.Games[game];
-                    foreach (String f in gm.ConfigFolders)
+                    /*foreach (String f in gm.ConfigFolders)
                     {
                         repoC.RemoveFolder(gm, f, RepoConfig.PROPERTY_FOLDER_TYPE_CONFIG);
-                    }
+                    }*/
                 }
                 else if(trvGamesList.SelectedNode.FullPath.IndexOf('\\') == -1)
                 {
