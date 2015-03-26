@@ -106,6 +106,7 @@ namespace SimpleGameSaver
                         TreeNode saveNode = new TreeNode(save.Name);
                         saveNode.ImageIndex = FOLDERSAVE_IMGE_IDEX;
                         saveNode.SelectedImageIndex = FOLDERSAVE_IMGE_IDEX;
+                        saveNode.Checked = save.Enabled;
                         savesNode.Nodes.Add(saveNode);
                     }
 
@@ -117,11 +118,12 @@ namespace SimpleGameSaver
                     configsNode.SelectedImageIndex = CONFIG_IMGE_IDEX;
 
                     //Load configs of game
-                    foreach (FolderItem save in game.Value.ConfigFolders.Values)
+                    foreach (FolderItem config in game.Value.ConfigFolders.Values)
                     {
-                        TreeNode configNode = new TreeNode(save.Name);
+                        TreeNode configNode = new TreeNode(config.Name);
                         configNode.ImageIndex = FOLDERCONFIG_IMGE_IDEX;
                         configNode.SelectedImageIndex = FOLDERCONFIG_IMGE_IDEX;
+                        configNode.Checked = config.Enabled;
                         configsNode.Nodes.Add(configNode);
                     }
 
