@@ -101,7 +101,7 @@ namespace SimpleGameSaver
                     savesNode.SelectedImageIndex = SAVE_IMGE_IDEX;
 
                     //Load saves of game
-                    foreach (FolderItem save in game.Value.SaveFolders)
+                    foreach (FolderItem save in game.Value.SaveFolders.Values)
                     {
                         TreeNode saveNode = new TreeNode(save.Name);
                         saveNode.ImageIndex = FOLDERSAVE_IMGE_IDEX;
@@ -117,7 +117,7 @@ namespace SimpleGameSaver
                     configsNode.SelectedImageIndex = CONFIG_IMGE_IDEX;
 
                     //Load configs of game
-                    foreach (FolderItem save in game.Value.ConfigFolders)
+                    foreach (FolderItem save in game.Value.ConfigFolders.Values)
                     {
                         TreeNode configNode = new TreeNode(save.Name);
                         configNode.ImageIndex = FOLDERCONFIG_IMGE_IDEX;
@@ -164,7 +164,7 @@ namespace SimpleGameSaver
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.Value.SaveFolders.Add(new FolderItem(addF.result, addF.result, FolderItem.FolderType.Save));
+                    game.Value.SaveFolders.Add(addF.result, new FolderItem(addF.result, addF.result, FolderItem.FolderType.Save));
                     repoC.AddFolder(game.Value, new FolderItem(addF.result, addF.result, FolderItem.FolderType.Save));
                     UpdateGames();
                 }
@@ -182,7 +182,7 @@ namespace SimpleGameSaver
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.Value.ConfigFolders.Add(new FolderItem(addF.result, addF.result, FolderItem.FolderType.Config));
+                    game.Value.ConfigFolders.Add(addF.result, new FolderItem(addF.result, addF.result, FolderItem.FolderType.Config));
                     repoC.AddFolder(game.Value, new FolderItem(addF.result, addF.result, FolderItem.FolderType.Config));
                     UpdateGames();
                 }
@@ -239,7 +239,7 @@ namespace SimpleGameSaver
                 {
                     String game = trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\'));
                     GameItem gm = user.Games[game];
-                    foreach (FolderItem f in gm.SaveFolders)
+                    foreach (FolderItem f in gm.SaveFolders.Values)
                     {
                        // repoC.RemoveFolder(gm, f, RepoConfig.PROPERTY_FOLDER_TYPE_SAVE);
                     }

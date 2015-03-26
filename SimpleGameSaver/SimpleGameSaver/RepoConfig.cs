@@ -347,15 +347,15 @@ namespace SimpleGameSaver
                     item.User = user;
 
                     query = TAG_FOLDER;
-                    item.SaveFolders = new List<FolderItem>();
-                    item.ConfigFolders = new List<FolderItem>();
+                    item.SaveFolders = new Dictionary<String, FolderItem>();
+                    item.ConfigFolders = new Dictionary<String, FolderItem>();
                     
                     foreach (XmlNode folder in game.SelectNodes(query))
                     {
                         if(folder.Attributes[PROPERTY_FOLDER_TYPE].Value == FolderItem.FolderType.Save)
-                            item.SaveFolders.Add(new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Save, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
+                            item.SaveFolders.Add(folder.InnerText, new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Save, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
                         else if (folder.Attributes[PROPERTY_FOLDER_TYPE].Value == FolderItem.FolderType.Config)
-                            item.ConfigFolders.Add(new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Config, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
+                            item.ConfigFolders.Add(folder.InnerText, new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Config, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
                     }
 
                     games.Add(item.Name, item);

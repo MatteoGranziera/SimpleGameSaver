@@ -22,11 +22,11 @@ namespace SimpleGameSaver
         /// <summary>
         /// list of saves folders
         /// </summary>
-        public List<FolderItem> SaveFolders { get; set; }
+        public Dictionary<String, FolderItem> SaveFolders { get; set; }
         /// <summary>
         /// list of config folders
         /// </summary>
-        public List<FolderItem> ConfigFolders { get; set; }
+        public Dictionary<String, FolderItem> ConfigFolders { get; set; }
 
         /// <summary>
         /// Cosntructor of GameItem
