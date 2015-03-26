@@ -9,30 +9,70 @@ using DebugSystem.DebugService;
 
 namespace SimpleGameSaver
 {
+    /// <summary>
+    /// Class to write and read settings file
+    /// </summary>
     public class RepoConfig
     {
+        /// <summary>
+        /// tag for user in xml file
+        /// </summary>
         public const String TAG_USER = "User";
+        /// <summary>
+        /// tag for game in xml file
+        /// </summary>
         public const String TAG_GAME = "Game";
+        /// <summary>
+        /// tag for folder in xml file
+        /// </summary>
         public const String TAG_FOLDER = "Folder";
+        /// <summary>
+        /// property for name of user in xml file
+        /// </summary>
         public const String PROPERTY_USER_NAME = "name";
+        /// <summary>
+        /// property for name of game in xml file
+        /// </summary>
         public const String PROPERTY_GAME_NAME = "name";
+        /// <summary>
+        /// property for type of folder in xml file
+        /// </summary>
         public const String PROPERTY_FOLDER_TYPE = "type";
-        /*public const String PROPERTY_FOLDER_TYPE_CONFIG = "configFolder";
-        public const String PROPERTY_FOLDER_TYPE_SAVE = "saveFolder";*/
+        /// <summary>
+        /// property for destination of folder in xml file
+        /// </summary>
         public const String PROPERTY_FOLDER_DESTINATION = "destFolder";
+        /// <summary>
+        /// property for enable of folder in xml file
+        /// </summary>
         public const String PROPERTY_FOLDER_ENABLED = "enaFolder";
 
+        /// <summary>
+        /// XmlDocument of settings file
+        /// </summary>
         private XmlDocument doc = null;
+        /// <summary>
+        /// root node in settings file
+        /// </summary>
         private XmlNode rootNode = null;
-        public string filename{
-            get; set;
-        }
+        /// <summary>
+        /// get or set name of settings file
+        /// </summary>
+        public string filename { get; set; }
 
+        /// <summary>
+        /// Constructor of RepoConfig
+        /// </summary>
+        /// <param name="filename"> name of settings file</param>
         public RepoConfig(string filename)
         {
             this.filename = filename;
         }
 
+        /// <summary>
+        /// Update xml settings file with changes 
+        /// </summary>
+        /// <returns>true if all was write correctly else false</returns>
         private bool WriteChanges()
         {
             try
@@ -49,6 +89,10 @@ namespace SimpleGameSaver
             }
         }
 
+        /// <summary>
+        /// Load xml settings file
+        /// </summary>
+        /// <returns>true if all was load correctly else false</returns>
         private bool InizializeFile()
         {
             if(filename != null)
@@ -95,6 +139,11 @@ namespace SimpleGameSaver
             }
         }
 
+        /// <summary>
+        /// Add a user in settings file
+        /// </summary>
+        /// <param name="user">UserItem of user (is)</param>
+        /// <returns>true if user was added correctly else false</returns>
         public bool AddUser(UserItem user)
         {
             if (!InizializeFile())
@@ -118,6 +167,11 @@ namespace SimpleGameSaver
             
         }
 
+        /// <summary>
+        /// Add a game in settings file
+        /// </summary>
+        /// <param name="game">GameItem of the game</param>
+        /// <returns>true if game was added correctly else false</returns>
         public bool AddGame(GameItem game )
         {
             if (!InizializeFile())
@@ -142,7 +196,13 @@ namespace SimpleGameSaver
 
         }
 
-        public bool RemoveFolder(GameItem gi, Folder folder)
+        /// <summary>
+        /// Remove folder in settings file
+        /// </summary>
+        /// <param name="gi">GameItem of folder</param>
+        /// <param name="folder">FolderItem of folder to remove</param>
+        /// <returns>true if folder was removed correctly else false</returns>
+        public bool RemoveFolder(GameItem gi, FolderItem folder)
         {
             if (!InizializeFile())
             {
@@ -170,6 +230,11 @@ namespace SimpleGameSaver
             }
         }
 
+        /// <summary>
+        /// Remove game in settings file. All folder under this game will removed
+        /// </summary>
+        /// <param name="gi">GameItem to remove</param>
+        /// <returns>true if game was removed correctly else false</returns>
         public bool RemoveGame(GameItem gi)
         {
             if (!InizializeFile())
@@ -195,7 +260,13 @@ namespace SimpleGameSaver
             }
         }
 
-        public bool AddFolder(GameItem game, Folder folder){
+        /// <summary>
+        /// Add a folder in settings file
+        /// </summary>
+        /// <param name="game">GameItem of folder</param>
+        /// <param name="folder">FolderItem of folder to add</param>
+        /// <returns>true if folder was added correctly else false</returns>
+        public bool AddFolder(GameItem game, FolderItem folder){
             if (!InizializeFile())
             {
                 return false;
@@ -222,6 +293,10 @@ namespace SimpleGameSaver
             }
         }
 
+        /// <summary>
+        /// Get list of users that are in settings file
+        /// </summary>
+        /// <returns></returns>
         public List<String> GetUsers()
         {
             List<String> users = new List<String>();
@@ -248,6 +323,11 @@ namespace SimpleGameSaver
             return users;
         }
 
+        /// <summary>
+        /// Get games of a user in settings file
+        /// </summary>
+        /// <param name="user">UserItem </param>
+        /// <returns>dictionary of games of the user</returns>
         public Dictionary<String, GameItem> GetGamesByUser(UserItem user)
         {
             Dictionary<String, GameItem> games = new Dictionary<String, GameItem>();
@@ -267,15 +347,15 @@ namespace SimpleGameSaver
                     item.User = user;
 
                     query = TAG_FOLDER;
-                    item.SaveFolders = new List<Folder>();
-                    item.ConfigFolders = new List<Folder>();
+                    item.SaveFolders = new List<FolderItem>();
+                    item.ConfigFolders = new List<FolderItem>();
                     
                     foreach (XmlNode folder in game.SelectNodes(query))
                     {
-                        if(folder.Attributes[PROPERTY_FOLDER_TYPE].Value == Folder.FolderType.Save)
-                            item.SaveFolders.Add(new Folder(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,Folder.FolderType.Save, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
-                        else if (folder.Attributes[PROPERTY_FOLDER_TYPE].Value == Folder.FolderType.Config)
-                            item.ConfigFolders.Add(new Folder(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,Folder.FolderType.Config, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
+                        if(folder.Attributes[PROPERTY_FOLDER_TYPE].Value == FolderItem.FolderType.Save)
+                            item.SaveFolders.Add(new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Save, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
+                        else if (folder.Attributes[PROPERTY_FOLDER_TYPE].Value == FolderItem.FolderType.Config)
+                            item.ConfigFolders.Add(new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Config, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
                     }
 
                     games.Add(item.Name, item);

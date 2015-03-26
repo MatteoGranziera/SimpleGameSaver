@@ -50,7 +50,7 @@
     <Compile Include="AddFolderDialog.Designer.cs">
       <DependentUpon>AddFolderDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Folder.cs" />
+    <Compile Include="FolderItem.cs" />
     <Compile Include="frmDebug.cs">
       <SubType>Form</SubType>
     </Compile>
