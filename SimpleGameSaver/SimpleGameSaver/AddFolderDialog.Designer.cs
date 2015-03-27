@@ -35,6 +35,9 @@
             this.ckbAutoTag = new System.Windows.Forms.CheckBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.txtDestination = new System.Windows.Forms.TextBox();
+            this.lblDestination = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtRelativePath
@@ -45,6 +48,7 @@
             this.txtRelativePath.Name = "txtRelativePath";
             this.txtRelativePath.Size = new System.Drawing.Size(333, 20);
             this.txtRelativePath.TabIndex = 0;
+            this.txtRelativePath.TextChanged += new System.EventHandler(this.txtRelativePath_TextChanged);
             // 
             // btnBrowse
             // 
@@ -92,7 +96,7 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(362, 126);
+            this.btnOk.Location = new System.Drawing.Point(362, 133);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 5;
@@ -103,7 +107,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(281, 126);
+            this.btnCancel.Location = new System.Drawing.Point(281, 133);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 6;
@@ -111,11 +115,44 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // txtDestination
+            // 
+            this.txtDestination.Enabled = false;
+            this.txtDestination.Location = new System.Drawing.Point(112, 136);
+            this.txtDestination.Name = "txtDestination";
+            this.txtDestination.Size = new System.Drawing.Size(157, 20);
+            this.txtDestination.TabIndex = 7;
+            // 
+            // lblDestination
+            // 
+            this.lblDestination.AutoSize = true;
+            this.lblDestination.Enabled = false;
+            this.lblDestination.Location = new System.Drawing.Point(12, 139);
+            this.lblDestination.Name = "lblDestination";
+            this.lblDestination.Size = new System.Drawing.Size(94, 13);
+            this.lblDestination.TabIndex = 8;
+            this.lblDestination.Text = "Destination Name:";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(354, 59);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(59, 17);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "Enable";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // AddFolderDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 161);
+            this.ClientSize = new System.Drawing.Size(449, 168);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.lblDestination);
+            this.Controls.Add(this.txtDestination);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.ckbAutoTag);
@@ -139,5 +176,8 @@
         private System.Windows.Forms.CheckBox ckbAutoTag;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.TextBox txtDestination;
+        private System.Windows.Forms.Label lblDestination;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

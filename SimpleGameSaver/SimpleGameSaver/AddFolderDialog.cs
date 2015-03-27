@@ -14,7 +14,9 @@ namespace SimpleGameSaver
     {
         private String absolutePath { get; set; }
         private String relativePath { get; set; }
+        public String destinationName { get; set; }
         public String result { get; set; }
+        public String repoConfig { get; set; }
 
         private String TAG_USERFOLDER = "%USERPROFILE%";
         private String TAG_SYSTEMDRIVE = "%SYSTEMDRIVE%";
@@ -92,6 +94,12 @@ namespace SimpleGameSaver
             result = "";
             this.Close();
 
+        }
+
+        private void txtRelativePath_TextChanged(object sender, EventArgs e)
+        {
+            txtDestination.Text = txtRelativePath.Text.Substring(txtRelativePath.Text.LastIndexOf('\\') + 1, txtRelativePath.Text.Length - txtRelativePath.Text.LastIndexOf('\\') -1);
+            destinationName = txtDestination.Text;
         }
     }
 }

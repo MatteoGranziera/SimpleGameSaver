@@ -144,7 +144,7 @@ namespace SimpleGameSaver
                 lblActualUser.Text = user.Name;
                 UpdateGames();
             }
-            
+
         }
 
         private void trvGamesList_AfterCheck(object sender, TreeViewEventArgs e)
@@ -159,15 +159,15 @@ namespace SimpleGameSaver
         {
             if (user != null && user.Name != "" && lblActualGame.Text != "")
             {
-                var game = user.Games.Where(g => trvGamesList.SelectedNode.FullPath.Substring(0, trvGamesList.SelectedNode.FullPath.IndexOf('\\')) == g.Value.Name).ToList()[0];
+                var game = user.Games.Where(g => GetRootParent(trvGamesList.SelectedNode).Text == g.Value.Name).ToList()[0];
 
                 AddFolderDialog addF = new AddFolderDialog();
                 addF.ShowDialog();
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.Value.SaveFolders.Add(addF.result, new FolderItem(addF.result, addF.result, FolderItem.FolderType.Save));
-                    repoC.AddFolder(game.Value, new FolderItem(addF.result, addF.result, FolderItem.FolderType.Save));
+                    game.Value.SaveFolders.Add(addF.result, new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Save));
+                    repoC.AddFolder(game.Value, new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Save));
                     UpdateGames();
                 }
             }
@@ -184,8 +184,8 @@ namespace SimpleGameSaver
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.Value.ConfigFolders.Add(addF.result, new FolderItem(addF.result, addF.result, FolderItem.FolderType.Config));
-                    repoC.AddFolder(game.Value, new FolderItem(addF.result, addF.result, FolderItem.FolderType.Config));
+                    game.Value.ConfigFolders.Add(addF.result, new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Config));
+                    repoC.AddFolder(game.Value, new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Config));
                     UpdateGames();
                 }
             }
