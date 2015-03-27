@@ -273,7 +273,7 @@ namespace SimpleGameSaver
             }
 
             XmlElement gameEl = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + folder.Game.User.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + folder.Game.Name+ "']");
-            if (gameEl.SelectSingleNode(TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + folder.Type + "' and text() = '" + folder + "']") == null)
+            if (gameEl.SelectSingleNode(TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + folder.Type + "' and text() = '" + folder.Name + "']") == null)
             {
                 XmlElement folderEl = doc.CreateElement(TAG_FOLDER);
 
@@ -369,6 +369,36 @@ namespace SimpleGameSaver
             }
 
             return games;
+        }
+
+        public String GetFolderName(FolderItem folder)
+        {
+            if (!InizializeFile())
+            {
+                return "";
+            }
+
+            try
+            {
+                String query = TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + folder.Game.User.Name + "']/" +
+                    TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + folder.Game.Name + "']/" +
+                    TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + folder.Type + "' and @"+PROPERTY_FOLDER_DESTINATION+"='" + folder.DestinationName + "']";
+                XmlNode folderNode = rootNode.SelectSingleNode(query);
+                if (folderNode == null)
+                {
+                    return folder.DestinationName;
+                }
+                else
+                {
+                    return folder.DestinationName + "_.";
+                }
+            }
+            catch(Exception e)
+            {
+                //Exception
+                LogSystem.LogError(e);
+                return "";
+            }
         }
 
     }

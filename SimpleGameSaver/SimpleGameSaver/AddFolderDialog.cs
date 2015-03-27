@@ -16,7 +16,6 @@ namespace SimpleGameSaver
         private String relativePath { get; set; }
         public String destinationName { get; set; }
         public String result { get; set; }
-        public String repoConfig { get; set; }
 
         private String TAG_USERFOLDER = "%USERPROFILE%";
         private String TAG_SYSTEMDRIVE = "%SYSTEMDRIVE%";

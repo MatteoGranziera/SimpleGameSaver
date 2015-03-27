@@ -167,6 +167,7 @@ namespace SimpleGameSaver
                 if (addF.DialogResult == DialogResult.OK)
                 {
                     FolderItem newF = new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Save, game.Value);
+                    newF.DestinationName = repoC.GetFolderName(newF);
                     game.Value.SaveFolders.Add(addF.result, newF);
                     repoC.AddFolder(newF);
                     UpdateGames();
@@ -186,6 +187,7 @@ namespace SimpleGameSaver
                 if (addF.DialogResult == DialogResult.OK)
                 {
                     FolderItem newF = new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Config, game.Value);
+                    newF.DestinationName = repoC.GetFolderName(newF);
                     game.Value.ConfigFolders.Add(addF.result, newF);
                     repoC.AddFolder(newF);
                     UpdateGames();
