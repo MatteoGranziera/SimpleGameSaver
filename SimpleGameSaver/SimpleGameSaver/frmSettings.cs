@@ -166,8 +166,9 @@ namespace SimpleGameSaver
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.Value.SaveFolders.Add(addF.result, new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Save));
-                    repoC.AddFolder(game.Value, new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Save));
+                    FolderItem newF = new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Save, game.Value);
+                    game.Value.SaveFolders.Add(addF.result, newF);
+                    repoC.AddFolder(newF);
                     UpdateGames();
                 }
             }
@@ -184,8 +185,9 @@ namespace SimpleGameSaver
 
                 if (addF.DialogResult == DialogResult.OK)
                 {
-                    game.Value.ConfigFolders.Add(addF.result, new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Config));
-                    repoC.AddFolder(game.Value, new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Config));
+                    FolderItem newF = new FolderItem(addF.result, addF.destinationName, FolderItem.FolderType.Config, game.Value);
+                    game.Value.ConfigFolders.Add(addF.result, newF);
+                    repoC.AddFolder(newF);
                     UpdateGames();
                 }
             }
@@ -229,11 +231,11 @@ namespace SimpleGameSaver
 
                     if (gm.ConfigFolders.Keys.Contains(path))
                     {
-                        repoC.RemoveFolder(gm, gm.ConfigFolders[path]);
+                        repoC.RemoveFolder(gm.ConfigFolders[path]);
                     }
                     else if (gm.SaveFolders.Keys.Contains(path))
                     {
-                        repoC.RemoveFolder(gm, gm.SaveFolders[path]);
+                        repoC.RemoveFolder(gm.SaveFolders[path]);
                     }
 
                 }
@@ -243,7 +245,7 @@ namespace SimpleGameSaver
                     GameItem gm = user.Games[game];
                     foreach (FolderItem f in gm.SaveFolders.Values)
                     {
-                        repoC.RemoveFolder(gm, f);
+                        repoC.RemoveFolder(f);
                     }
                 }
                 else if (trvGamesList.SelectedNode.Text == "Configurations")
@@ -252,7 +254,7 @@ namespace SimpleGameSaver
                     GameItem gm = user.Games[game];
                     foreach (FolderItem f in gm.ConfigFolders.Values)
                     {
-                        repoC.RemoveFolder(gm, f);
+                        repoC.RemoveFolder(f);
                     }
                 }
                 else if(trvGamesList.SelectedNode.FullPath.IndexOf('\\') == -1)

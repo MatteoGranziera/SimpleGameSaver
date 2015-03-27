@@ -35,18 +35,25 @@ namespace SimpleGameSaver
         public String Type { get; set; }
 
         /// <summary>
+        /// Parent GameItem
+        /// </summary>
+        public GameItem Game { get; set; }
+
+        /// <summary>
         /// Constructor of Folder class
         /// </summary>
         /// <param name="name">relative path of folder</param>
         /// <param name="destinationName">name of folder in the backup archive</param>
         /// <param name="type">type of folder use Folder.FolderType</param>
+        /// <param name="parent">GameItem parent of this Folder</param>
         /// <param name="enabled">this folder is enabled</param>
-        public FolderItem(String name, String destinationName, String type, bool enabled = true)
+        public FolderItem(String name, String destinationName, String type, GameItem parent, bool enabled = true)
         {
             this.Name = name;
             this.DestinationName = destinationName;
             this.Enabled = enabled;
             this.Type = type;
+            this.Game = parent;
         }
     }
 }

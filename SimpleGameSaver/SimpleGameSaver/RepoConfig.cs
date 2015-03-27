@@ -202,7 +202,7 @@ namespace SimpleGameSaver
         /// <param name="gi">GameItem of folder</param>
         /// <param name="folder">FolderItem of folder to remove</param>
         /// <returns>true if folder was removed correctly else false</returns>
-        public bool RemoveFolder(GameItem gi, FolderItem folder)
+        public bool RemoveFolder(FolderItem folder)
         {
             if (!InizializeFile())
             {
@@ -211,9 +211,9 @@ namespace SimpleGameSaver
 
             try
             {
-                XmlElement game = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + gi.User.Name + "']/" +TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.Name + "']");
+                XmlElement game = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + folder.Game.User.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + folder.Game.Name + "']");
 
-                LogSystem.Log(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + gi.Name + "']"+"/"+TAG_FOLDER+"[@"+PROPERTY_FOLDER_TYPE+"='"+folder.Type+"' and text() = '"+folder.Name+"']");
+                LogSystem.Log(TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + folder.Game.Name + "']"+"/"+TAG_FOLDER+"[@"+PROPERTY_FOLDER_TYPE+"='"+folder.Type+"' and text() = '"+folder.Name+"']");
                 XmlElement folderEl = (XmlElement)game.SelectSingleNode(
                     TAG_FOLDER+"[@"+PROPERTY_FOLDER_TYPE+"='"+folder.Type+"' and text() = '"+folder.Name+"']");
                 if (folderEl != null)
@@ -266,13 +266,13 @@ namespace SimpleGameSaver
         /// <param name="game">GameItem of folder</param>
         /// <param name="folder">FolderItem of folder to add</param>
         /// <returns>true if folder was added correctly else false</returns>
-        public bool AddFolder(GameItem game, FolderItem folder){
+        public bool AddFolder(FolderItem folder){
             if (!InizializeFile())
             {
                 return false;
             }
 
-            XmlElement gameEl = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + game.User.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + game.Name+ "']");
+            XmlElement gameEl = (XmlElement)rootNode.SelectSingleNode(TAG_USER + "[@" + PROPERTY_USER_NAME + "='" + folder.Game.User.Name + "']/" + TAG_GAME + "[@" + PROPERTY_GAME_NAME + "='" + folder.Game.Name+ "']");
             if (gameEl.SelectSingleNode(TAG_FOLDER + "[@" + PROPERTY_FOLDER_TYPE + "='" + folder.Type + "' and text() = '" + folder + "']") == null)
             {
                 XmlElement folderEl = doc.CreateElement(TAG_FOLDER);
@@ -353,9 +353,9 @@ namespace SimpleGameSaver
                     foreach (XmlNode folder in game.SelectNodes(query))
                     {
                         if(folder.Attributes[PROPERTY_FOLDER_TYPE].Value == FolderItem.FolderType.Save)
-                            item.SaveFolders.Add(folder.InnerText, new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Save, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
+                            item.SaveFolders.Add(folder.InnerText, new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Save, item, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
                         else if (folder.Attributes[PROPERTY_FOLDER_TYPE].Value == FolderItem.FolderType.Config)
-                            item.ConfigFolders.Add(folder.InnerText, new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Config, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
+                            item.ConfigFolders.Add(folder.InnerText, new FolderItem(folder.InnerText, folder.Attributes[PROPERTY_FOLDER_DESTINATION].Value,FolderItem.FolderType.Config, item, Convert.ToBoolean(folder.Attributes[PROPERTY_FOLDER_ENABLED].Value)));
                     }
 
                     games.Add(item.Name, item);
@@ -369,7 +369,6 @@ namespace SimpleGameSaver
             }
 
             return games;
-            
         }
 
     }
