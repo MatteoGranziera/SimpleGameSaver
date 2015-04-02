@@ -58,6 +58,7 @@
             // 
             this.btnBackupSaves.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBackupSaves.Enabled = false;
             this.btnBackupSaves.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBackupSaves.Location = new System.Drawing.Point(6, 109);
             this.btnBackupSaves.Name = "btnBackupSaves";
@@ -65,6 +66,7 @@
             this.btnBackupSaves.TabIndex = 0;
             this.btnBackupSaves.Text = "Backup Savegames";
             this.btnBackupSaves.UseVisualStyleBackColor = true;
+            this.btnBackupSaves.Click += new System.EventHandler(this.btnBackupSaves_Click);
             // 
             // menuStrip1
             // 
@@ -157,22 +159,27 @@
             // ckbSaveToCloud
             // 
             this.ckbSaveToCloud.AutoSize = true;
+            this.ckbSaveToCloud.Enabled = false;
             this.ckbSaveToCloud.Location = new System.Drawing.Point(7, 43);
             this.ckbSaveToCloud.Name = "ckbSaveToCloud";
             this.ckbSaveToCloud.Size = new System.Drawing.Size(134, 17);
             this.ckbSaveToCloud.TabIndex = 1;
             this.ckbSaveToCloud.Text = "Copy to cloud directory";
             this.ckbSaveToCloud.UseVisualStyleBackColor = true;
+            this.ckbSaveToCloud.CheckedChanged += new System.EventHandler(this.ckbSaveToCloud_CheckedChanged);
             // 
             // ckbSaveToFolder
             // 
             this.ckbSaveToFolder.AutoSize = true;
+            this.ckbSaveToFolder.Checked = true;
+            this.ckbSaveToFolder.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbSaveToFolder.Location = new System.Drawing.Point(6, 19);
             this.ckbSaveToFolder.Name = "ckbSaveToFolder";
             this.ckbSaveToFolder.Size = new System.Drawing.Size(202, 17);
             this.ckbSaveToFolder.TabIndex = 0;
             this.ckbSaveToFolder.Text = "Copy to SimpleGameSaver\'s directory";
             this.ckbSaveToFolder.UseVisualStyleBackColor = true;
+            this.ckbSaveToFolder.CheckedChanged += new System.EventHandler(this.ckbSaveToFolder_CheckedChanged);
             // 
             // grbRestoreOptions
             // 
@@ -209,22 +216,27 @@
             // ckbRestoreFromCloud
             // 
             this.ckbRestoreFromCloud.AutoSize = true;
+            this.ckbRestoreFromCloud.Enabled = false;
             this.ckbRestoreFromCloud.Location = new System.Drawing.Point(7, 43);
             this.ckbRestoreFromCloud.Name = "ckbRestoreFromCloud";
             this.ckbRestoreFromCloud.Size = new System.Drawing.Size(158, 17);
             this.ckbRestoreFromCloud.TabIndex = 1;
             this.ckbRestoreFromCloud.Text = "Restore from cloud directory";
             this.ckbRestoreFromCloud.UseVisualStyleBackColor = true;
+            this.ckbRestoreFromCloud.CheckedChanged += new System.EventHandler(this.ckbRestoreFromCloud_CheckedChanged);
             // 
             // ckeRestoreFromFolder
             // 
             this.ckeRestoreFromFolder.AutoSize = true;
+            this.ckeRestoreFromFolder.Checked = true;
+            this.ckeRestoreFromFolder.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckeRestoreFromFolder.Location = new System.Drawing.Point(6, 19);
             this.ckeRestoreFromFolder.Name = "ckeRestoreFromFolder";
             this.ckeRestoreFromFolder.Size = new System.Drawing.Size(226, 17);
             this.ckeRestoreFromFolder.TabIndex = 0;
             this.ckeRestoreFromFolder.Text = "Restore from SimpleGameSaver\'s directory";
             this.ckeRestoreFromFolder.UseVisualStyleBackColor = true;
+            this.ckeRestoreFromFolder.CheckedChanged += new System.EventHandler(this.ckeRestoreFromFolder_CheckedChanged);
             // 
             // btnRestoreSaves
             // 
@@ -237,9 +249,11 @@
             this.btnRestoreSaves.TabIndex = 0;
             this.btnRestoreSaves.Text = "Restore Savegames";
             this.btnRestoreSaves.UseVisualStyleBackColor = true;
+            this.btnRestoreSaves.Click += new System.EventHandler(this.btnRestoreSaves_Click);
             // 
             // btnExit
             // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnExit.Location = new System.Drawing.Point(12, 224);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(84, 35);
@@ -250,6 +264,7 @@
             // 
             // btnSetUp
             // 
+            this.btnSetUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSetUp.Location = new System.Drawing.Point(102, 224);
             this.btnSetUp.Name = "btnSetUp";
             this.btnSetUp.Size = new System.Drawing.Size(128, 35);
@@ -262,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 271);
+            this.ClientSize = new System.Drawing.Size(506, 267);
             this.Controls.Add(this.btnSetUp);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.grbRestoreOptions);

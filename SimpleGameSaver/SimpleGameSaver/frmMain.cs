@@ -13,11 +13,14 @@ namespace SimpleGameSaver
 {
     public partial class frmMain : Form
     {
+        RepoConfig repoC = new RepoConfig("settings.xml");
         public frmMain()
         {
             InitializeComponent();
-            btnBackupSaves.Enabled = false;
-            btnRestoreSaves.Enabled = false;
+            cmbUsersSave.Items.AddRange(repoC.GetUsers().ToArray());
+            cmbUserRestore.Items.AddRange(repoC.GetUsers().ToArray());
+            btnBackupSaves.Enabled = CheckBackupBtn();
+            btnRestoreSaves.Enabled = CheckRestoreBtn();
             frmDebug debug = new frmDebug();
             debug.Show();
             LogSystem.Log("Main Form Opened");
@@ -26,27 +29,13 @@ namespace SimpleGameSaver
         private void cmbUsersSave_TextChanged(object sender, EventArgs e)
         {
             LogSystem.Log("Event: cmbUserSave - TextChanged");
-            if (cmbUsersSave.Text != "" && cmbUsersSave.Text != null)
-            {
-                btnBackupSaves.Enabled = true;
-            }
-            else
-            {
-                btnBackupSaves.Enabled = false;
-            }
+            btnBackupSaves.Enabled = CheckBackupBtn();
         }
 
         private void cmbUserRestore_TextChanged(object sender, EventArgs e)
         {
             LogSystem.Log("Event: cmbUserRestore - TextChanged");
-            if (cmbUserRestore.Text != "" && cmbUserRestore.Text != null)
-            {
-                btnRestoreSaves.Enabled = true;
-            }
-            else
-            {
-                btnRestoreSaves.Enabled = false;
-            }
+            btnRestoreSaves.Enabled = CheckRestoreBtn();
         }
 
         private void btnSetUp_Click(object sender, EventArgs e)
@@ -74,5 +63,54 @@ namespace SimpleGameSaver
             LogSystem.Log("Event: exitToolStripMenuItem - Click");
             this.Close();
         }
+
+        private void btnBackupSaves_Click(object sender, EventArgs e)
+        {
+            if (CheckBackupBtn())
+            {
+                RepoFiles repoF = new RepoFiles();
+                repoF.Backup(repoC, new UserItem(cmbUsersSave.Text));
+            }
+        }
+
+        private void ckbSaveToFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            btnBackupSaves.Enabled = CheckBackupBtn();
+        }
+
+        private void ckbSaveToCloud_CheckedChanged(object sender, EventArgs e)
+        {
+            btnBackupSaves.Enabled = CheckBackupBtn();
+        }
+
+        public bool CheckBackupBtn()
+        {
+            return cmbUsersSave.Text != "" && (ckbSaveToFolder.Checked || ckbSaveToCloud.Checked);
+        }
+
+        public bool CheckRestoreBtn()
+        {
+            return cmbUserRestore.Text != "" && (ckeRestoreFromFolder.Checked || ckbRestoreFromCloud.Checked);
+        }
+
+        private void ckeRestoreFromFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            btnRestoreSaves.Enabled = CheckRestoreBtn();
+        }
+
+        private void ckbRestoreFromCloud_CheckedChanged(object sender, EventArgs e)
+        {
+            btnRestoreSaves.Enabled = CheckRestoreBtn();
+        }
+
+        private void btnRestoreSaves_Click(object sender, EventArgs e)
+        {
+            if (CheckRestoreBtn())
+            {
+                RepoFiles repoF = new RepoFiles();
+                repoF.Restore(repoC, new UserItem(cmbUserRestore.Text));
+            }
+        }
+
     }
 }
